@@ -190,7 +190,7 @@ class Tracker():
         return elapsed_time
 
     def get_tm_allocated(self):
-#        Stats.get_ocr_number(coords.)
+        Stats.get_ocr_number(coords.OCR_)
 #        Stats.get_ocr_number(coords.OCR_TM_MAGIC_ALLOCATED)
         return
 

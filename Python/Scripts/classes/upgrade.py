@@ -98,7 +98,6 @@ class UpgradeEM(Stats):
                 self.send_string(str(can_buy_mpow))
                 time.sleep(userset.MEDIUM_SLEEP)
                 self.click(*coords.EM_POW_BUY)
-                time.sleep(5)
                 return
 
             if e_base_pow < (my_e_cap * ratio[0]):

@@ -1,6 +1,7 @@
 """Handles various statistics."""
 import datetime
 import time
+
 import coordinates as coords
 from classes.navigation import Navigation
 
@@ -189,6 +190,7 @@ class Tracker():
         return elapsed_time
 
     def get_tm_allocated(self):
+#        Stats.get_ocr_number(coords.)
 #        Stats.get_ocr_number(coords.OCR_TM_MAGIC_ALLOCATED)
         return
 

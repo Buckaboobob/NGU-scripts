@@ -30,24 +30,26 @@ def speedrun(duration, f):
     end = (duration * 60) + 1
     itopod_advance = False
     f.nuke()
-    f.loadout(1)  # Gold drop equipment
-    f.adventure(highest=True)
-    t_end = time.time() + 60
-    while time.time() < t_end and rt < end - 20:
-        for x in range(1, 8, 1):
-            f.time_machine(1e6, magic=True)
-            time.sleep(0.5)
-        f.augments({"MI": 0.7, "DTMT": 0.3}, 1.5e6)
-    f.loadout(3)  # Bar/power equimpent
-    f.adventure(itopod=True, itopodauto=True)
-#    f.time_machine(1e8, magic=True)
-    f.augments({"MI": 0.7, "DTMT": 0.3},1.5e6)
-    time.sleep(10)
-    f.blood_magic(2, reverse=True)
-#    f.boost_equipment()
-#    f.gold_diggers([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
-#    f.augments({"MI": 0.7, "DTMT": 0.3}, 1.5e10)
-    f.wandoos(True)
+#    Tracker.get_tm_allocated(self)
+    if rt < 60:
+        f.loadout(1)  # Gold drop equipment
+        f.adventure(highest=True)
+        t_end = time.time() + 60
+        while time.time() < t_end and rt < end - 20:
+            for x in range(1, 8, 1):
+                f.time_machine(1e6, magic=True)
+                time.sleep(0.5)
+            f.augments({"MI": 0.7, "DTMT": 0.3}, 1.5e6)
+        f.loadout(3)  # Bar/power equimpent
+        f.adventure(itopod=True, itopodauto=True)
+#       f.time_machine(1e8, magic=True)
+        f.augments({"MI": 0.7, "DTMT": 0.3},1.5e6)
+        time.sleep(10)
+        f.blood_magic(2, reverse=True)
+#        f.boost_equipment()
+#        f.gold_diggers([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+#        f.augments({"MI": 0.7, "DTMT": 0.3}, 1.5e10)
+        f.wandoos(True)
 
     while rt < end - 300:
         t_end = time.time() + 60

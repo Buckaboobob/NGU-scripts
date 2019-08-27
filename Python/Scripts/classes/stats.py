@@ -2,7 +2,7 @@
 import datetime
 import time
 
-from coo
+import coordinates as coords
 from classes.navigation import Navigation
 
 class Stats(Navigation):

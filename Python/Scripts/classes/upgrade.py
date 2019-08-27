@@ -90,7 +90,7 @@ class UpgradeEM(Stats):
             if m_base_pow < (my_m_cap * ratio[0]):
                 need_m_base_pow = (my_m_cap * ratio[0]) - m_base_pow
                 print("Magic Power is Below Ratio by " + str(need_m_base_pow))
-                can_buy_mpow = math.trunc(current_exp / coords.EPOWER_COST)
+                can_buy_mpow = math.trunc(current_exp / coords.MPOWER_COST)
                 print("I can buy " + str(can_buy_mpow) + " Magic Power")
                 self.exp_magic()
                 time.sleep(userset.MEDIUM_SLEEP)
@@ -98,8 +98,8 @@ class UpgradeEM(Stats):
                 self.send_string(str(can_buy_mpow))
                 time.sleep(userset.MEDIUM_SLEEP)
                 self.click(*coords.EM_POW_BUY)
+                time.sleep(5)
                 return
-
 
             if e_base_pow < (my_e_cap * ratio[0]):
                 need_e_base_pow = int(my_e_cap * ratio[0]) - e_base_pow

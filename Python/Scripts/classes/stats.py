@@ -47,6 +47,17 @@ class Stats(Navigation):
                 Stats.OCR_failures = 0
                 Stats.OCR_failed = True
 
+    def get_ocr_number(self, x_1, y_1, x_2, y_2):
+        ocr_string = self.ocr(x_1, y_1, x_2, y_2)
+        if ocr_string.isnumeric():
+            return int(ocr_string)
+        if ocr_string.__contains__(','):
+            return int(ocr_string.replace(",", ""))
+        if ocr_string.__contains__("E"):
+            return int(float(self.ocr(x_1, y_1, x_2, y_2)))
+        print("Something went wrong with OCR returning -1")
+        return -1
+
 class EstimateRate(Stats):
 
     def __init__(self, duration, mode='moving_average'):
@@ -138,10 +149,10 @@ class Tracker():
     Usage: Initialize the class by calling tracker = Tracker(duration),
            then at the end of each run invoke tracker.progress() to update stats.
     """
-    mystats = { "TM" : [0, 0],
-                "Wandoos" : [0, 0],
-                "Augment" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                "BM" : [0, 0, 0, 0, 0, 0, 0, 0]}
+    mystats = {"TM": [0, 0],
+                "Wandoos": [0, 0],
+                "Augment": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                "BM": [0, 0, 0, 0, 0, 0, 0, 0]}
 
 
     def __init__(self, duration, track_xp=True, track_pp=True, mode='moving_average'):
@@ -178,7 +189,7 @@ class Tracker():
         return elapsed_time
 
     def get_tm_allocated(self):
-
+#        Stats.get_ocr_number(coords.OCR_TM_MAGIC_ALLOCATED)
         return
 
 

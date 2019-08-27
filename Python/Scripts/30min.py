@@ -17,6 +17,7 @@ import coordinates as coords
 import time
 import datetime
 
+
 def speedrun(duration, f):
     """Start a speedrun.
 
@@ -31,8 +32,6 @@ def speedrun(duration, f):
     f.nuke()
     f.loadout(1)  # Gold drop equipment
     f.adventure(highest=True)
-    print("RT:" + str(rt) + "End:" + str(end) + " Time: " + str(datetime.datetime.now()))
-    print()
     t_end = time.time() + 60
     while time.time() < t_end and rt < end - 20:
         for x in range(1, 8, 1):
@@ -51,8 +50,6 @@ def speedrun(duration, f):
     f.wandoos(True)
 
     while rt < end - 300:
-        print("rt < end -300")
-        print("RT:" + str(rt) + "End:" + str(end) + " Time: " + str(datetime.datetime.now()))
         t_end = time.time() + 60
         while time.time() < t_end and rt < end - 20:
             f.wandoos(True)
@@ -62,13 +59,11 @@ def speedrun(duration, f):
         f.blood_magic(3, reverse=True)
         rt = f.rt = f.rt_to_seconds()
     if rt > end - 300:
-        print("rt > end - 300")
-        print("RT:" + str(rt) + "End:" + str(end) + " Time: " + str(datetime.datetime.now()))
         f.send_string("r")
         f.send_string("t")
         f.blood_magic(3, reverse=True)
         f.augments({"MI": 0.3, "DTMT": 0.7}, f.get_idle_cap(1))
-    while rt < end:
+    while rt < end + 30:
         time.sleep(0.1)
         rt = f.rt_to_seconds()
 
@@ -89,26 +84,20 @@ def speedrun(duration, f):
 #        print("Time: " + str(datetime.datetime.now()))
 
     if rt > end:
-#        print("Nuke!")
         f.nuke()
         time.sleep(2)
         f.fight()
-#        print("Fight")
         f.pit()
-#        print("Pit!")
         f.spin()
-#        print("Spin!")
         f.save_check()
-#        print("Save!")
         tracker.progress()
-#        print("Tracker Progress!")
         u.fix_pcb_ratio()
         u.buy()
         print("Buy!")
 
         tracker.adjustxp()
-    print("Going into Sleep till 30 mins up?")
-    print(str(f.rt_to_seconds()) + " < end")
+#    print("Going into Sleep till 30 mins up?")
+#    print(str(f.rt_to_seconds()) + " < end")
 
     if rt > end:
         f.do_rebirth()

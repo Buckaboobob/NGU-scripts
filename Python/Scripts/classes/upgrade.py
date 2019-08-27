@@ -35,6 +35,91 @@ class UpgradeEM(Stats):
         self.e2m_ratio = e2m_ratio
         self.report = report
 
+    def fix_pcb_ratio(self):
+        """ Fix Power Cap Bar resource ratio
+                Currently the ratio is hardcoded just below
+                Only works with Energy and Magic as I don't have R yet"""
+        ratio = [1, 35000, 1]
+        self.exp()
+        self.set_value_with_ocr("XP")
+        if Stats.OCR_failed:
+            print('OCR failed, exiting upgrade routine.')
+            return
+        try:
+            current_exp = Stats.xp
+            print("I Have " + str(current_exp) + " to spend")
+
+            e_base_pow = float(self.ocr(*coords.OCR_POW).strip().replace(',', ''))
+            e_base_cap = float(self.ocr(*coords.OCR_CAP).strip().replace(',', ''))
+            e_base_bar = float(self.ocr(*coords.OCR_BAR).strip().replace(',', ''))
+            print("(" + str(e_base_pow) + ")(" + str(e_base_cap) + ")(" + str(e_base_bar) + ")")
+            self.exp_magic()
+            m_base_pow = float(self.ocr(*coords.OCR_POW).strip().replace(',', ''))
+            m_base_cap = float(self.ocr(*coords.OCR_CAP).strip().replace(',', ''))
+            m_base_bar = float(self.ocr(*coords.OCR_BAR).strip().replace(',', ''))
+            print("(" + str(m_base_pow) + ")(" + str(m_base_cap) + ")(" + str(m_base_bar) + ")")
+            my_e_cap = int(e_base_cap / ratio[1])
+            my_m_cap = int(m_base_cap / ratio[1])
+
+            if m_base_bar < (my_m_cap * ratio[2]):
+                need_m_base_bar = (my_m_cap * ratio[2]) - m_base_bar
+                print("Magic Bars is Below Ratio by " + str(need_m_base_bar))
+                can_buy_mbar = math.trunc(current_exp / coords.MBAR_COST)
+                print("I can buy " + str(can_buy_mbar) + " Magic Bars")
+                self.exp_magic()
+                time.sleep(userset.MEDIUM_SLEEP)
+                self.click(*coords.EM_BAR_BOX)
+                self.send_string(str(can_buy_mbar))
+                time.sleep(userset.MEDIUM_SLEEP)
+                self.click(*coords.EM_BAR_BUY)
+                return
+
+            if e_base_bar < (my_e_cap * ratio[2]):
+                need_e_base_bar = (my_e_cap * ratio[2]) - e_base_bar
+                print("Energy Bars is Below Ratio by " + str(need_e_base_bar))
+                can_buy_ebar = math.trunc(current_exp / coords.EBAR_COST)
+                print("I can buy " + str(can_buy_ebar) + " Energy Bars")
+                self.exp()
+                time.sleep(userset.MEDIUM_SLEEP)
+                self.click(*coords.EM_BAR_BOX)
+                self.send_string(str(can_buy_ebar))
+                time.sleep(userset.MEDIUM_SLEEP)
+                self.click(*coords.EM_BAR_BUY)
+                return
+
+            if m_base_pow < (my_m_cap * ratio[0]):
+                need_m_base_pow = (my_m_cap * ratio[0]) - m_base_pow
+                print("Magic Power is Below Ratio by " + str(need_m_base_pow))
+                can_buy_mpow = math.trunc(current_exp / coords.EPOWER_COST)
+                print("I can buy " + str(can_buy_mpow) + " Magic Power")
+                self.exp_magic()
+                time.sleep(userset.MEDIUM_SLEEP)
+                self.click(*coords.EM_POW_BOX)
+                self.send_string(str(can_buy_mpow))
+                time.sleep(userset.MEDIUM_SLEEP)
+                self.click(*coords.EM_POW_BUY)
+                return
+
+
+            if e_base_pow < (my_e_cap * ratio[0]):
+                need_e_base_pow = int(my_e_cap * ratio[0]) - e_base_pow
+                print("Energy Power is Below Ratio by " + str(need_e_base_pow))
+                can_buy_epow = math.trunc(current_exp / coords.EPOWER_COST)
+                print("I can buy " + str(can_buy_epow) + " Energy Power")
+                self.exp()
+                time.sleep(userset.MEDIUM_SLEEP)
+                self.click(*coords.EM_POW_BOX)
+                self.send_string(str(can_buy_epow))
+                time.sleep(userset.MEDIUM_SLEEP)
+                self.click(*coords.EM_POW_BUY)
+                return
+
+        except:
+            print("Something went wrong... not fixing ratio's")
+
+        return
+
+
     def buy(self):
         """Buy upgrades for both energy and magic.
 

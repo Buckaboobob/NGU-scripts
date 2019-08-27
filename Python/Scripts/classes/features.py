@@ -323,6 +323,8 @@ class Features(Navigation, Inputs):
         self.click(*coords.REBIRTH)
         self.click(*coords.REBIRTH_BUTTON)
         self.click(*coords.CONFIRM)
+        self.get_curr_ngu()
+
         return
 
     def check_challenge(self):
@@ -425,9 +427,13 @@ class Features(Navigation, Inputs):
                 self.send_string(m)
             self.click(*coords.TM_MULT)
 
-    def blood_magic(self, target):
+    def blood_magic(self, target, reverse=False):
         """Assign magic to BM."""
         self.menu("bloodmagic")
+        if reverse:
+            for i in range(target, 0, -1):
+                self.click(*coords.BM[i])
+                return
         for i in range(target):
             self.click(*coords.BM[i])
 
@@ -950,6 +956,19 @@ class Features(Navigation, Inputs):
         except ValueError:
             print("couldn't get idle cap")
             return 0
+    def get_curr_ngu(self):
+        """Get the current running NGU Numbers fore a rebirth"""
+        tmp_nav_menu = ""
+        if Navigation.current_menu != 'rebirth':
+            tmp_nav_menu = Navigation.current_menu
+            Navigation.rebirth(self)
+        cngu = self.ocr(*coords.OCR_CNGU)
+        nngu = self.ocr(*coords.OCR_NNGU)
+        if tmp_nav_menu != "":
+            self.menu(tmp_nav_menu)
+#        print("Current NGU:" + cngu + " New NGU at rebirth:" +nngu)
+        return(cngu, nngu)
+
     def get_quest_text(self):
         """Check if we have an active quest or not."""
         self.menu("questing")

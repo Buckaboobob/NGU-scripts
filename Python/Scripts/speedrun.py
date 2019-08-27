@@ -34,23 +34,23 @@ def speedrun(duration, f):
         rt = f.rt_to_seconds()
     itopod_advance = False
     f.nuke()
-    f.loadout(3)  # Gold drop equipment
+    f.loadout(4)  # Gold drop equipment
     f.adventure(highest=True)
     time.sleep(4)
     f.loadout(4)  # Bar/power equimpent
     f.adventure(itopod=True, itopodauto=True)
     f.time_machine(1e8, magic=True)
-    f.augments({"AE": 0.7, "ES": 0.3}, 1.8e10)
+    f.augments({"MI": 0.7, "DTMT": 0.3}, 1.8e10)
 
-    f.blood_magic(8)
+    f.blood_magic(2)
     f.boost_equipment()
-    f.gold_diggers([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
-    f.augments({"AE": 0.7, "ES": 0.3}, 1.5e10)
+#    f.gold_diggers([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+    f.augments({"MI": 0.7, "DTMT": 0.3}, 1.5e10)
     f.wandoos(True)
 
     while rt < end - 20:
         f.wandoos(True)
-        f.gold_diggers([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+#        f.gold_diggers([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
 
         if rt > 40:
             try:
@@ -99,5 +99,5 @@ print(f"Top left found at: {w.x}, {w.y}")
 tracker = Tracker(3)
 
 while True:  # main loop
-    speedrun(3, feature)
+    speedrun(30, feature)
     tracker.progress()

@@ -18,6 +18,7 @@ class Stats(Navigation):
 
     def set_value_with_ocr(self, value):
         """Store start EXP via OCR."""
+        debug = False
         try:
             if value == "TOTAL XP":
                 self.misc()
@@ -137,6 +138,11 @@ class Tracker():
     Usage: Initialize the class by calling tracker = Tracker(duration),
            then at the end of each run invoke tracker.progress() to update stats.
     """
+    mystats = { "TM" : [0, 0],
+                "Wandoos" : [0, 0],
+                "Augment" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                "BM" : [0, 0, 0, 0, 0, 0, 0, 0]}
+
 
     def __init__(self, duration, track_xp=True, track_pp=True, mode='moving_average'):
         self.__start_time = time.time()
@@ -170,6 +176,11 @@ class Tracker():
         elapsed = round(time.time() - self.__start_time)
         elapsed_time = str(datetime.timedelta(seconds=elapsed))
         return elapsed_time
+
+    def get_tm_allocated(self):
+
+        return
+
 
     def progress(self):
             self.__estimaterate.stop_watch()

@@ -132,7 +132,7 @@ class Inputs():
         save_dc.DeleteDC()
         mfc_dc.DeleteDC()
         win32gui.ReleaseDC(window.id, hwnd_dc)
-        # bmp.save("asdf.png")
+#        bmp.save("asdf.png")
         return bmp
 
     def pixel_search(self, color, x_start, y_start, x_end, y_end):
@@ -214,9 +214,9 @@ class Inputs():
         enhancer = ImageEnhance.Sharpness(bmp)
         bmp = enhancer.enhance(0)
         bmp = bmp.filter(ImageFilter.SHARPEN)  # Sharpen image for better OCR
-
+#        debug = True
         if debug:
-            bmp.save("debug_ocr.png")
+            bmp.save("screenshots/debug_ocr" + datetime.datetime.now().strftime('%d-%m-%y-%H-%M-%S') + ".png")
         s = pytesseract.image_to_string(bmp)
         return s
 
@@ -257,6 +257,17 @@ class Inputs():
         path = os.path.join(working, directory, file)
         return path
 
+    def get_ocr_number(self, x_1, y_1, x_2, y_2):
+        ocr_string = self.ocr(x_1, y_1, x_2, y_2)
+        if ocr_string.isnumeric():
+            return int(ocr_string)
+        if ocr_string.__contains__(','):
+            return int(ocr_string.replace(",", ""))
+        if ocr_string.__contains__("E"):
+            return int(float(self.ocr(x_1, y_1, x_2, y_2)))
+        print("Something went wrong with OCR returning -1")
+        return -1
+
     def ocr_number(self, x_1, y_1, x_2, y_2):
         """Remove all non-digits."""
         return int(self.remove_letters(self.ocr(x_1, y_1, x_2, y_2)))
@@ -272,3 +283,13 @@ class Inputs():
         if not os.path.exists("screenshots"):
             os.mkdir("screenshots")
         bmp.save('screenshots/' + datetime.datetime.now().strftime('%d-%m-%y-%H-%M-%S') + '.png')
+        return bmp
+
+    def get_screenshot(self):
+        """Save a screenshot of the game."""
+        bmp = self.get_bitmap()
+        bmp = bmp.crop((window.x + 8, window.y + 8, window.x + 968, window.y + 608))
+        if not os.path.exists("screenshots"):
+            os.mkdir("screenshots")
+        bmp.save('screenshots/screen.png')
+        return bmp

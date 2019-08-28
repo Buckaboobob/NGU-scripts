@@ -53,12 +53,12 @@ def speedrun(duration, f):
 
     while rt < end - 300:
         t_end = time.time() + 60
-        while time.time() < t_end and rt < end - 20:
+        while time.time() < t_end and rt < end - 300:
             f.wandoos(True)
             time.sleep(0.5)
-        f.augments({"MI": 0.7, "DTMT": 0.3}, 1.5e6)
+            f.augments({"MI": 0.9, "DTMT": 0.1}, f.get_idle_cap(1))
+            f.blood_magic(4, reverse=True)
         f.gold_diggers([3])
-        f.blood_magic(3, reverse=True)
         rt = f.rt = f.rt_to_seconds()
     if rt > end - 300:
         f.send_string("r")

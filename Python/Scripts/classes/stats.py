@@ -1,7 +1,8 @@
 """Handles various statistics."""
 import datetime
 import time
-
+import sys
+sys.path.append(".")
 import coordinates as coords
 from classes.navigation import Navigation
 

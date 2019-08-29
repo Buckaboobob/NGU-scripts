@@ -39,7 +39,7 @@ class UpgradeEM(Stats):
         """ Fix Power Cap Bar resource ratio
                 Currently the ratio is hardcoded just below
                 Only works with Energy and Magic as I don't have R yet"""
-        ratio = [1, 35000, 1]
+        ratio = [1, 30000, 1]
         self.exp()
         self.set_value_with_ocr("XP")
         if Stats.OCR_failed:

@@ -265,7 +265,10 @@ class Inputs():
             return int(ocr_string.replace(",", ""))
         if ocr_string.__contains__("E"):
             return int(float(self.ocr(x_1, y_1, x_2, y_2)))
-        print("Something went wrong with OCR returning -1")
+        if ocr_string == "":
+            return 0
+        print("Something went wrong with OCR returning -1. Result was (" + ocr_string + ")")
+        self.ocr(x_1, y_1, x_2, y_2, debug=True)
         return -1
 
     def ocr_number(self, x_1, y_1, x_2, y_2):

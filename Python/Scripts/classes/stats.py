@@ -2,9 +2,11 @@
 import datetime
 import time
 import sys
+
 sys.path.append(".")
 import coordinates as coords
 from classes.navigation import Navigation
+
 
 class Stats(Navigation):
     """Handles various statistics."""
@@ -60,6 +62,7 @@ class Stats(Navigation):
         print("Something went wrong with OCR returning -1")
         return -1
 
+
 class EstimateRate(Stats):
 
     def __init__(self, duration, mode='moving_average'):
@@ -105,7 +108,7 @@ class EstimateRate(Stats):
     def rates(self):
         try:
             xpr, ppr = self.__alg[self.mode]()
-            return round(3600*xpr), round(3600*ppr)
+            return round(3600 * xpr), round(3600 * ppr)
         except ZeroDivisionError:
             return 0, 0
 
@@ -151,11 +154,6 @@ class Tracker():
     Usage: Initialize the class by calling tracker = Tracker(duration),
            then at the end of each run invoke tracker.progress() to update stats.
     """
-    mystats = {"TM": [0, 0],
-                "Wandoos": [0, 0],
-                "Augment": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                "BM": [0, 0, 0, 0, 0, 0, 0, 0]}
-
 
     def __init__(self, duration, track_xp=True, track_pp=True, mode='moving_average'):
         self.__start_time = time.time()
@@ -163,24 +161,25 @@ class Tracker():
         Stats.track_xp = track_xp
         Stats.track_pp = track_pp
         self.__estimaterate = EstimateRate(duration, mode)
-        #print(f"{'-' * 15} Run # {self.__iteration} {'-' * 15}")
+        # print(f"{'-' * 15} Run # {self.__iteration} {'-' * 15}")
         print("{0:{fill}{align}40}".format(f" {self.__iteration} ", fill="-", align="^"))
         print("{:^18}{:^3}{:^18}".format("XP", "|", "PP"))
         print("-" * 40)
         self.__show_progress()
-
 
     def __update_progress(self):
         self.__iteration += 1
 
     def __show_progress(self):
         if self.__iteration == 1:
-            print('Starting: {:^8}{:^3}Starting: {:^8}'.format(self.human_format(Stats.xp), "|", self.human_format(Stats.pp)))
+            print('Starting: {:^8}{:^3}Starting: {:^8}'.format(self.human_format(Stats.xp), "|",
+                                                               self.human_format(Stats.pp)))
         else:
             elapsed = self.elapsed_time()
             xph, pph = self.__estimaterate.rates()
             report_time = "\n{0:^40}\n".format(elapsed)
-            print('Current:  {:^8}{:^3}Current:  {:^8}'.format(self.human_format(Stats.xp), "|", self.human_format(Stats.pp)))
+            print('Current:  {:^8}{:^3}Current:  {:^8}'.format(self.human_format(Stats.xp), "|",
+                                                               self.human_format(Stats.pp)))
             print('Per hour: {:^8}{:^3}Per hour: {:^8}'.format(self.human_format(xph), "|", self.human_format(pph)))
             print(report_time)
 
@@ -190,23 +189,17 @@ class Tracker():
         elapsed_time = str(datetime.timedelta(seconds=elapsed))
         return elapsed_time
 
-    def get_tm_allocated(self):
-        Stats.get_ocr_number(coords.OCR_)
-#        Stats.get_ocr_number(coords.OCR_TM_MAGIC_ALLOCATED)
-        return
-
-
     def progress(self):
-            self.__estimaterate.stop_watch()
-            self.__update_progress()
-            if not Stats.OCR_failed:
-                self.__show_progress()
-            print("{0:{fill}{align}40}".format(f" {self.__iteration} ", fill="-", align="^"))
-            print("{:^18}{:^3}{:^18}".format("XP", "|", "PP"))
-            print("-" * 40)
+        self.__estimaterate.stop_watch()
+        self.__update_progress()
+        if not Stats.OCR_failed:
+            self.__show_progress()
+        print("{0:{fill}{align}40}".format(f" {self.__iteration} ", fill="-", align="^"))
+        print("{:^18}{:^3}{:^18}".format("XP", "|", "PP"))
+        print("-" * 40)
 
     def adjustxp(self):
-            self.__estimaterate.update_xp()
+        self.__estimaterate.update_xp()
 
     @classmethod
     def human_format(self, num):

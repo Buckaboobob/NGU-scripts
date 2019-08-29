@@ -12,6 +12,7 @@ from classes.navigation import Navigation
 from classes.stats import Stats, EstimateRate, Tracker
 from classes.upgrade import UpgradeEM
 from classes.window import Window
+from classes.ngui import NGUI
 
 import coordinates as coords
 import time
@@ -30,7 +31,10 @@ def speedrun(duration, f):
     end = (duration * 60) + 1
     itopod_advance = False
     f.nuke()
-#    Tracker.get_tm_allocated(self)
+#    tracker.get_tm_allocated(self)
+#    print("Energy Allocated: " + tracker.mystats['TM'][0])
+#    print("Magic Allocated: " + tracker.mystats['TM'][1])
+
     if rt < 60:
         f.loadout(1)  # Gold drop equipment
         f.adventure(highest=True)
@@ -39,34 +43,39 @@ def speedrun(duration, f):
             for x in range(1, 8, 1):
                 f.time_machine(1e6, magic=True)
                 time.sleep(0.5)
-            f.augments({"MI": 0.7, "DTMT": 0.3}, 1.5e6)
+            f.augments({"CI": 0.7, "ML": 0.3}, 1.5e6)
         f.loadout(3)  # Bar/power equimpent
+#        tracker.get_tm_allocated()
+#        print("Energy Allocated: " + tracker.mystats['TM'][0])
+#        print("Magic Allocated: " + tracker.mystats['TM'][1])
         f.adventure(itopod=True, itopodauto=True)
-#       f.time_machine(1e8, magic=True)
-        f.augments({"MI": 0.7, "DTMT": 0.3},1.5e6)
+        f.augments({"CI": 0.7, "ML": 0.3},1.5e6)
         time.sleep(10)
-        f.blood_magic(2, reverse=True)
-#        f.boost_equipment()
-#        f.gold_diggers([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
-#        f.augments({"MI": 0.7, "DTMT": 0.3}, 1.5e10)
+        f.blood_magic(3, reverse=True)
         f.wandoos(True)
 
     while rt < end - 300:
         t_end = time.time() + 60
+        my_interval = 0
         while time.time() < t_end and rt < end - 300:
+            my_interval += 1
             f.wandoos(True)
             time.sleep(0.5)
-            f.augments({"MI": 0.9, "DTMT": 0.1}, f.get_idle_cap(1))
-            f.blood_magic(4, reverse=True)
-        f.gold_diggers([3])
+            f.augments({"CI": 0.9, "ML": 0.1}, f.get_idle_cap(1))
+            if my_interval == 8:
+                f.blood_magic(3, reverse=True)
+#        f.gold_diggers([3])
         rt = f.rt = f.rt_to_seconds()
     if rt > end - 300:
         f.send_string("r")
         f.send_string("t")
         f.blood_magic(3, reverse=True)
-        f.augments({"MI": 0.3, "DTMT": 0.7}, f.get_idle_cap(1))
+        f.augments({"CI": 0.3, "ML": 0.7}, f.get_idle_cap(1))
+        f.gold_diggers([3])
+        f.fight()
     while rt < end + 30:
-        time.sleep(0.1)
+        time.sleep(1)
+        f.fight()
         rt = f.rt_to_seconds()
 
 #            try:
@@ -86,16 +95,16 @@ def speedrun(duration, f):
 #        print("Time: " + str(datetime.datetime.now()))
 
     if rt > end:
-        f.nuke()
-        time.sleep(2)
-        f.fight()
+#        f.nuke()
+#        time.sleep(2)
+#        f.fight()
         f.pit()
         f.spin()
         f.save_check()
         tracker.progress()
         u.fix_pcb_ratio()
         u.buy()
-        print("Buy!")
+#        print("Buy!")
 
         tracker.adjustxp()
 #    print("Going into Sleep till 30 mins up?")
@@ -112,6 +121,8 @@ w = Window()
 i = Inputs()
 nav = Navigation()
 feature = Features()
+ngui = NGUI(nav)
+
 
 Window.x, Window.y = i.pixel_search(coords.TOP_LEFT_COLOR, 0, 0, 400, 600)
 nav.menu("inventory")

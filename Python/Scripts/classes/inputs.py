@@ -257,18 +257,19 @@ class Inputs():
         path = os.path.join(working, directory, file)
         return path
 
-    def get_ocr_number(self, x_1, y_1, x_2, y_2):
-        ocr_string = self.ocr(x_1, y_1, x_2, y_2)
+    def get_ocr_number(self, x_1, y_1, x_2, y_2, bmp=None, debug=False):
+        ocr_string = self.ocr(x_1, y_1, x_2, y_2, bmp=bmp, debug=debug)
         if ocr_string.isnumeric():
             return int(ocr_string)
         if ocr_string.__contains__(','):
             return int(ocr_string.replace(",", ""))
         if ocr_string.__contains__("E"):
-            return int(float(self.ocr(x_1, y_1, x_2, y_2)))
+#            return int(float(self.ocr(x_1, y_1, x_2, y_2)))
+            return int(float(ocr_string))
         if ocr_string == "":
             return 0
         print("Something went wrong with OCR returning -1. Result was (" + ocr_string + ")")
-        self.ocr(x_1, y_1, x_2, y_2, debug=True)
+        self.ocr(x_1, y_1, x_2, y_2, debug=True, bmp=bmp)
         return -1
 
     def ocr_number(self, x_1, y_1, x_2, y_2):

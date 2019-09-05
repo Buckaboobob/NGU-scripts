@@ -87,10 +87,10 @@ ABILITY_PRIORITY = {1: 6,  # Strong
                     4: 10,  # Ultimate
                     5: 4,  # Block
                     6: 5,  # Defensive
-                    9: 12 # Charge
+                    9: 12  # Charge
                     }  # Paralyze
 
-#titan dictionaries
+# titan dictionaries
 TITAN_PT = {"GRB": {"p": 1.3e3, "t": 1.3e3}, "GCT": {"p": 5e3, "t": 4e3},
             "jake": {"p": 1.4e4, "t": 1.2e4}, "UUG": {"p": 4e5, "t": 3e5},
             "walderp": {"p": 5.5e6, "t": 3.75e6},
@@ -106,7 +106,7 @@ OCR_ADV_TITAN = OCRBox(560, 277, 685, 330)
 OCR_ADV_ENEMY_CHECK = OCRBox(766, 382, 889, 403)
 OCR_COMBAT_LOG = OCRBox(310, 496, 600, 589)
 
-#MENU OFFSETS
+# MENU OFFSETS
 
 MENU_OFFSET_X = 230
 MENU_FIGHT = Pixel(MENU_OFFSET_X, 75)
@@ -147,7 +147,7 @@ FANCY_TITAN_HP_BAR_OFF = Pixel(585, 410)
 DISABLE_HIGHSCORE = Pixel(900, 410)
 SIMPLE_INVENTORY_SHORTCUT_ON = Pixel(350, 420)
 
-#FIGHT BOSS OFFSETS
+# FIGHT BOSS OFFSETS
 
 NUKE = Pixel(620, 145)
 FIGHT = Pixel(620, 275)
@@ -155,29 +155,34 @@ FIGHT_STOP = Pixel(625, 165)
 
 # INVENTORY OFFSETS
 EQUIPMENT_SLOTS = {"accessory1": Pixel(480, 65),
-                  "accessory2": Pixel(480, 115),
-                  "accessory3": Pixel(480, 165),
-                  "accessory4": Pixel(480, 215),
-                  "head": Pixel(525, 65),
-                  "chest": Pixel(525, 115),
-                  "legs": Pixel(525, 165),
-                  "boots": Pixel(525, 210),
-                  "weapon": Pixel(575, 115),
-                  "cube": Pixel(625, 115)}
+                   "accessory2": Pixel(480, 115),
+                   "accessory3": Pixel(480, 165),
+                   "accessory4": Pixel(480, 215),
+                   "accessory5": Pixel(425, 210),
+                   "accessory6": Pixel(425, 160),
+                   "head": Pixel(525, 65),
+                   "chest": Pixel(525, 115),
+                   "legs": Pixel(525, 165),
+                   "boots": Pixel(525, 210),
+                   "weapon": Pixel(575, 115),
+                   "cube": Pixel(625, 115)}
 LOADOUT_Y = 255
-LOADOUT = {1: Pixel(330, LOADOUT_Y), 2: Pixel(360, LOADOUT_Y), 3: Pixel(390, LOADOUT_Y), 4: Pixel(420, LOADOUT_Y), 5: Pixel(450, LOADOUT_Y),
-           6: Pixel(480, LOADOUT_Y), 7: Pixel(510, LOADOUT_Y), 8: Pixel(540, LOADOUT_Y), 9: Pixel(570, LOADOUT_Y), 10: Pixel(600, LOADOUT_Y)}
+LOADOUT = {1: Pixel(330, LOADOUT_Y), 2: Pixel(360, LOADOUT_Y), 3: Pixel(390, LOADOUT_Y), 4: Pixel(420, LOADOUT_Y),
+           5: Pixel(450, LOADOUT_Y),
+           6: Pixel(480, LOADOUT_Y), 7: Pixel(510, LOADOUT_Y), 8: Pixel(540, LOADOUT_Y), 9: Pixel(570, LOADOUT_Y),
+           10: Pixel(600, LOADOUT_Y)}
 
 INVENTORY_SLOTS = Pixel(300, 330)
 INVENTORY_AREA = OCRBox(315, 290, 930, 560)
 INVENTORY_PAGE_Y = 574
-INVENTORY_PAGE = [Pixel(364, INVENTORY_PAGE_Y), Pixel(428, INVENTORY_PAGE_Y), Pixel(492, INVENTORY_PAGE_Y), Pixel(560, INVENTORY_PAGE_Y), Pixel(620, INVENTORY_PAGE_Y)]
-#TIME MACHINE OFFSETS
+INVENTORY_PAGE = [Pixel(364, INVENTORY_PAGE_Y), Pixel(428, INVENTORY_PAGE_Y), Pixel(492, INVENTORY_PAGE_Y),
+                  Pixel(560, INVENTORY_PAGE_Y), Pixel(620, INVENTORY_PAGE_Y)]
+# TIME MACHINE OFFSETS
 TM_SPEED = Pixel(532, 233)
 TM_MULT = Pixel(532, 330)
 TM_SPEED_MINUS = Pixel(570, 236)
 TM_MULT_MINUS = Pixel(570, 335)
-#BLOOD MAGIC OFFSETS
+# BLOOD MAGIC OFFSETS
 BM_LOCKED = Pixel(231, 276)
 
 BM_X = 570
@@ -199,24 +204,23 @@ BM_RECLAIM = [Pixel(BM_RECLAIM_X, 228), Pixel(BM_RECLAIM_X, 263), Pixel(BM_RECLA
 
 OCR_BM_SPELL_TEXT = OCRBox(440, 350, 800, 412)
 
-#TODO: AUGMENTATION OFFSETS
+# TODO: AUGMENTATION OFFSETS
 AUGMENT_X = 535
 
 AUGMENT = {"SS": Pixel(AUGMENT_X, 263), "DS": Pixel(AUGMENT_X, 292), "MI": Pixel(AUGMENT_X, 329),
            "DTMT": Pixel(AUGMENT_X, 357), "CI": Pixel(AUGMENT_X, 394), "ML": Pixel(AUGMENT_X, 422),
-            "SM": Pixel(AUGMENT_X, 459), "AA": Pixel(AUGMENT_X, 487), "EB": Pixel(AUGMENT_X, 525), 
-            "CS": Pixel(AUGMENT_X, 552), "AE": Pixel(AUGMENT_X, 450), "ES": Pixel(AUGMENT_X, 478),
-            "LS": Pixel(AUGMENT_X, 516), "QSL": Pixel(AUGMENT_X, 544)}
+           "SM": Pixel(AUGMENT_X, 459), "AA": Pixel(AUGMENT_X, 487), "EB": Pixel(AUGMENT_X, 525),
+           "CS": Pixel(AUGMENT_X, 552), "AE": Pixel(AUGMENT_X, 450), "ES": Pixel(AUGMENT_X, 478),
+           "LS": Pixel(AUGMENT_X, 516), "QSL": Pixel(AUGMENT_X, 544)}
 
 AUG_MINUS_X = 575
-
 
 AUG_SCROLL_TOP = Pixel(945, 264)
 AUG_SCROLL_BOT = Pixel(945, 575)
 AUG_SCROLL_SANITY_TOP = Pixel(943, 261)
 AUG_SCROLL_SANITY_BOT = Pixel(943, 578)
 
-#TODO: NGU OFFSETS
+# TODO: NGU OFFSETS
 NGU_TARGET = Pixel(635, 205)
 NGU_MAGIC = Pixel(380, 120)
 NGU_MINUS = Pixel(551, 207)
@@ -230,14 +234,14 @@ NGU_BAR_MIN = Pixel(306, 215)
 NGU_BAR_MAX = Pixel(503, 215)
 NGU_BAR_OFFSET_Y = 35
 
-#TODO: Make into dict ADVTRAINING
+# TODO: Make into dict ADVTRAINING
 ADV_TRAINING_TOUGHNESS = Pixel(890, 230)
 ADV_TRAINING_POWER = Pixel(890, 270)
 ADV_TRAINING_BLOCK = Pixel(890, 310)
 ADV_TRAINING_WANDOOS_ENERGY = Pixel(890, 350)
 ADV_TRAINING_WANDOOS_MAGIC = Pixel(890, 390)
 
-#YGGDRASIL OFFSETS
+# YGGDRASIL OFFSETS
 HARVEST = Pixel(814, 450)
 FRUIT_GOLD = Pixel(350, 180)
 FRUIT_POWER_A = Pixel(560, 180)
@@ -259,10 +263,20 @@ FRUITS = {
     8: FRUIT_ARB,
     9: FRUIT_NUMBERS
 }
-
+YGG_ACTION_SEARCH_AREA = OCRBox(317, 163, 863, 382)
 YGG_EAT_ALL = Pixel(815, 490)
+YGG_EAT_MAX_TIER = Pixel(815, 445)
+YGG_ACTIVATE = [OCRBox(321, 167, 376, 184),  # Fruit of Gold/Rage
+                OCRBox(531, 167, 586, 184),  # Fruit of Power Alpha/MacGuffin alpha
+                OCRBox(746, 167, 801, 184),  # Fruit of Adventure/Power Delta?
+                OCRBox(321, 262, 376, 279),  # Fruit of Knowledge/Watermellon
+                OCRBox(531, 262, 586, 279),  # Pomegranate/MacGuffin Beta
+                OCRBox(746, 262, 801, 279),  # Fruit of Luck/NA
+                OCRBox(321, 359, 376, 376),  # Fruit of Power Beta/NA
+                OCRBox(531, 359, 586, 376),  # Fruit of Arbitrariness/NA
+                OCRBox(746, 359, 801, 376)]  # Fruit of numbers/NA
 
-#REBIRTH OFFSETS
+# REBIRTH OFFSETS
 REBIRTH = Pixel(90, 420)
 REBIRTH_BUTTON = Pixel(545, 520)
 CONFIRM = Pixel(425, 320)
@@ -271,61 +285,60 @@ CHALLENGE = Pixel(380, 152)
 CHALLENGEOFFSET = 30
 OCR_REBIRTH_TIME = OCRBox(35, 375, 140, 392)
 
-#PIT OFFSETS
+# PIT OFFSETS
 PIT_CHECK = Pixel(195, 108)
 PIT = Pixel(630, 290)
 PIT_CONFIRM = Pixel(437, 317)
 SPIN_MENU = Pixel(820, 235)
 SPIN = Pixel(713, 562)
 
-#WANDOOS
+# WANDOOS
 WANDOOS_ENERGY = Pixel(626, 252)
 WANDOOS_MAGIC = Pixel(626, 350)
 WANDOOS_VERSION = [Pixel(325, 420), Pixel(325, 445), Pixel(325, 470)]
 
-
-#OCR OFFSETS
+# OCR OFFSETS
 OCR_CNGU = OCRBox(381, 150, 569, 174)
 OCR_NNGU = OCRBox(681, 150, 869, 174)
 OCR_BOSS = OCRBox(765, 308, 890, 323)
 OCR_PP = OCRBox(785, 25, 901, 43)
-OCR_EXP = OCRBox(340, 70, 900, 95) #From EXP Menu
+OCR_EXP = OCRBox(340, 70, 900, 95)  # From EXP Menu
 OCR_POW = OCRBox(469, 295, 619, 311)
 OCR_CAP = OCRBox(629, 295, 779, 311)
 OCR_BAR = OCRBox(790, 295, 939, 311)
 OCR_ECAP = OCRBox(9, 44, 165, 63)
-OCR_TOTAL_EXP = OCRBox(510, 365, 928, 400) #From MISC Info
+OCR_TOTAL_EXP = OCRBox(510, 365, 928, 400)  # From MISC Info
 OCR_NGU_E = OCRBox(820, 190, 940, 219)
-#WANDOOS OCR OFFSETS
+# WANDOOS OCR OFFSETS
 
 OCR_WANDOOS_MAGIC_ALLOCATED = OCRBox(646, 339, 803, 356)
 OCR_WANDOOS_ENERGY_ALLOCATED = OCRBox(646, 241, 803, 258)
 
-#TimeMachine OCR OFFSETS
+# TimeMachine OCR OFFSETS
 
 OCR_TM_MAGIC_ALLOCATED = OCRBox(690, 324, 847, 341)
 OCR_TM_ENERGY_ALLOCATED = OCRBox(690, 224, 847, 241)
 
-#BloodMagic OCR OFFSETS
+# BloodMagic OCR OFFSETS
 
-OCR_BM_ALLOCATED = [OCRBox(670, 219, 827, 236),# Poke yourself with a tack
-                    OCRBox(670, 254, 827, 271),# Fifty Papercuts
-                    OCRBox(670, 289, 827, 306),# A Big-Ass Hickey
-                    OCRBox(670, 324, 827, 341),# Eat a bowl of barbed wire
-                    OCRBox(670, 359, 827, 376),# Grand Theft Blood Bank
-                    OCRBox(670, 394, 827, 411),# Self Decapitation
-                    OCRBox(670, 429, 827, 446),# Hug a Woodchipper
-                    OCRBox(670, 464, 827, 481)]# Turn Yourself inside out
-#OCR_BM_0_ALLOCATED = OCRBox(670, 219, 827, 236)
-#OCR_BM_1_ALLOCATED = OCRBox(670, 254, 827, 271)
-#OCR_BM_2_ALLOCATED = OCRBox(670, 289, 827, 306)
-#OCR_BM_3_ALLOCATED = OCRBox(670, 324, 827, 341)
-#OCR_BM_4_ALLOCATED = OCRBox(670, 359, 827, 376)
-#OCR_BM_5_ALLOCATED = OCRBox(670, 394, 827, 411)
-#OCR_BM_6_ALLOCATED = OCRBox(670, 429, 827, 446)
-#OCR_BM_7_ALLOCATED = OCRBox(670, 464, 827, 481)
+OCR_BM_ALLOCATED = [OCRBox(670, 219, 827, 236),  # Poke yourself with a tack
+                    OCRBox(670, 254, 827, 271),  # Fifty Papercuts
+                    OCRBox(670, 289, 827, 306),  # A Big-Ass Hickey
+                    OCRBox(670, 324, 827, 341),  # Eat a bowl of barbed wire
+                    OCRBox(670, 359, 827, 376),  # Grand Theft Blood Bank
+                    OCRBox(670, 394, 827, 411),  # Self Decapitation
+                    OCRBox(670, 429, 827, 446),  # Hug a Woodchipper
+                    OCRBox(670, 464, 827, 481)]  # Turn Yourself inside out
+# OCR_BM_0_ALLOCATED = OCRBox(670, 219, 827, 236)
+# OCR_BM_1_ALLOCATED = OCRBox(670, 254, 827, 271)
+# OCR_BM_2_ALLOCATED = OCRBox(670, 289, 827, 306)
+# OCR_BM_3_ALLOCATED = OCRBox(670, 324, 827, 341)
+# OCR_BM_4_ALLOCATED = OCRBox(670, 359, 827, 376)
+# OCR_BM_5_ALLOCATED = OCRBox(670, 394, 827, 411)
+# OCR_BM_6_ALLOCATED = OCRBox(670, 429, 827, 446)
+# OCR_BM_7_ALLOCATED = OCRBox(670, 464, 827, 481)
 
-#AUGMENTATION OCR OFFSETS
+# AUGMENTATION OCR OFFSETS
 
 OCR_AUG_0 = OCRBox(694, 253, 821, 273)
 OCR_AUG_1 = OCRBox(694, 283, 821, 300)
@@ -337,29 +350,29 @@ OCR_AUG_6 = OCRBox(694, 447, 821, 469)
 OCR_AUG_7 = OCRBox(694, 477, 821, 499)
 OCR_AUG_8 = OCRBox(694, 512, 821, 534)
 OCR_AUG_9 = OCRBox(694, 542, 821, 564)
-#TODO get the rest of them
+# TODO get the rest of them
 
-#ADV TRAINING OCR OFFSETS
+# ADV TRAINING OCR OFFSETS
 OCR_ADV_TR_0_ALLOCATED = OCRBox(648, 215, 775, 238)
 OCR_ADV_TR_1_ALLOCATED = OCRBox(648, 255, 775, 278)
 OCR_ADV_TR_2_ALLOCATED = OCRBox(648, 295, 775, 318)
 OCR_ADV_TR_3_ALLOCATED = OCRBox(648, 335, 775, 358)
 OCR_ADV_TR_4_ALLOCATED = OCRBox(648, 375, 775, 398)
 
-#STATS OCR
+# STATS OCR
 OCR_ENERGY = OCRBox(12, 28, 165, 50)
 OCR_MAGIC = OCRBox(12, 70, 165, 90)
 OCR_R3 = OCRBox(12, 110, 162, 133)
 
-#OCR CHALLENGES
+# OCR CHALLENGES
 OCR_CHALLENGE_NAME = OCRBox(465, 87, 750, 104)
 OCR_CHALLENGE_24HC_TARGET = OCRBox(479, 267, 771, 297)
 
-#BEARD OFFSETS
+# BEARD OFFSETS
 
 BEARD_X = {1: 312, 2: 338, 3: 312, 4: 1}
 
-#TODO: DIGGER OFFSETS
+# TODO: DIGGER OFFSETS
 DIG_PAGE_Y = 110
 DIG_PAGE = [Pixel(340, DIG_PAGE_Y), Pixel(405, DIG_PAGE_Y), Pixel(470, DIG_PAGE_Y)]
 
@@ -370,7 +383,7 @@ DIG_LEVEL = [Pixel(535, 235), Pixel(850, 235), Pixel(535, 420), Pixel(850, 420)]
 
 DIG_DEACTIVATE_ALL = Pixel(850, 110)
 
-#QUESTING OFFSETS
+# QUESTING OFFSETS
 
 QUESTING_START_QUEST = Pixel(700, 165)
 QUESTING_SKIP_QUEST = Pixel(855, 165)
@@ -387,12 +400,14 @@ OCR_QUESTING_MAJORS = OCRBox(790, 300, 857, 317)
 QUESTING_ZONES = ["safe zone", "tutorial zone", "sewers", "forest", "cave of many things", "the sky",
                   "high\nsecurity base", "grb", "clock dimension", "gct", "2d universe", "ancient battlefield",
                   "jfa", "a very\nstrange place", "mega\nlands", "uug", "the beardverse", "waldo", "badly drawn world",
-                  "boring-ass earth", "thebeasto", "chocolate world", "the evilverse", "pretty pink princess", "greasynerdman", "meta land",
+                  "boring-ass earth", "thebeasto", "chocolate world", "the evilverse", "pretty pink princess",
+                  "greasynerdman", "meta land",
                   "interdimensional party", "thegodmom"]
 
-QUESTING_FILENAMES = ["q1.png", "q2.png", "q3.png", "q4.png", "q5.png", "q6.png", "q7.png", "q8.png", "q9.png", "q10.png"]
+QUESTING_FILENAMES = ["q1.png", "q2.png", "q3.png", "q4.png", "q5.png", "q6.png", "q7.png", "q8.png", "q9.png",
+                      "q10.png"]
 
-#SELLOUT
+# SELLOUT
 
 SELLOUT = Pixel(235, 550)
 SELLOUT_BOOST_2 = Pixel(520, 147)
@@ -401,7 +416,7 @@ SELLOUT_MUFFIN_BUY = Pixel(860, 255)
 OCR_MUFFIN = OCRBox(785, 204, 936, 240)
 OCR_AP = OCRBox(450, 73, 800, 100)
 
-#EXP COSTS PER UNIT
+# EXP COSTS PER UNIT
 EPOWER_COST = 150
 ECAP_COST = 0.004
 EBAR_COST = 80
@@ -418,11 +433,10 @@ HPOWER_COST = 15000000
 HCAP_COST = 400
 HBAR_COST = 8000000
 
-
 RATTACK_COST = 3
 RDEFENSE_COST = 3
 
-#EXP MENU
+# EXP MENU
 XP_MENU = Pixel(90, 450)
 MAGIC_MENU = Pixel(470, 110)
 ADVENTURE_MENU = Pixel(570, 110)
@@ -445,7 +459,7 @@ EM_RICHD_BOX = Pixel(860, 450)
 EM_RICHA_BUY = Pixel(700, 490)
 EM_RICHD_BUY = Pixel(860, 490)
 
-#INFO
+# INFO
 INFO = Pixel(100, 542)
 MISC = Pixel(355, 200)
 STAT_BREAKDOWN = Pixel(875, 35)
@@ -477,10 +491,11 @@ BREAKDOWN_MISC_SCROLL_DRAG_END = Pixel(956, 150)
 # PIXEL CHECKS
 # TODO: CONVERT to ColorPixel of COLOR_
 IS_BOSS_CROWN = ColorPixel(715, 277, 'F7EF29')
-IS_ENEMY_ALIVE = ColorPixel(*HEALTH, ['D93030', 'EB3434', 'DB3131', 'DA3030']) # If you reduce the enemy healthbar to 1px, the color changes for some reason
+IS_ENEMY_ALIVE = ColorPixel(*HEALTH, ['D93030', 'EB3434', 'DB3131',
+                                      'DA3030'])  # If you reduce the enemy healthbar to 1px, the color changes for some reason
 IS_DEAD = ColorPixel(*HEALTH, ['EBEBEB', 'ECECEC'])
-IS_ITOPOD_ACTIVE = ColorPixel(594, 277, '000000') # Checks color of pixel in "Floor x" text
-IS_IDLE = ColorPixel(416, 86, 'FFEB04') # top right yellow pixel
+IS_ITOPOD_ACTIVE = ColorPixel(594, 277, '000000')  # Checks color of pixel in "Floor x" text
+IS_IDLE = ColorPixel(416, 86, 'FFEB04')  # top right yellow pixel
 IS_SAVE_READY = ColorPixel(*SAVE, '99FF99')
 IS_PIT_READY = ColorPixel(*PIT_CHECK, '7FD23B')
 IS_SPIN_READY = ColorPixel(*PIT_CHECK, 'FFD23B')
@@ -490,7 +505,7 @@ COLOR_BM_LOCKED = ColorPixel(*BM_LOCKED, ['96A7B7', '7B4A94'])
 COLOR_BM_LOCKED_ALT = ColorPixel(*BM_LOCKED, '7B4A94')
 COLOR_SPELL_READY = ColorPixel(*BM_LOCKED, 'BA13A7')
 PLAYER_HEAL_THRESHOLD = ColorPixel(500, 410, 'FFFFFF')
-QUESTING_IDLE_INACTIVE = ColorPixel(386, 555, '111111') # Pixel in the subcontracting button
+QUESTING_IDLE_INACTIVE = ColorPixel(386, 555, '111111')  # Pixel in the subcontracting button
 COLOR_BM_AUTO_NUMBER = ColorPixel(*BM_AUTO_NUMBER, '000000')
 COLOR_BM_AUTO_DROP = ColorPixel(*BM_AUTO_DROP, '000000')
 COLOR_BM_AUTO_GOLD = ColorPixel(*BM_AUTO_GOLD, '000000')

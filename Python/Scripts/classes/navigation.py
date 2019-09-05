@@ -14,6 +14,7 @@ class Navigation(Inputs):
 
     def menu(self, target):
         """Navigate through main menu."""
+#        print("(" + Navigation.current_menu + ")")
         if Navigation.current_menu == target:
             return
         self.click(*Navigation.menus[target])

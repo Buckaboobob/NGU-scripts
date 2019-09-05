@@ -22,27 +22,27 @@ class Features(Navigation, Inputs):
     inventory_cleaned = False
     itopod_tier_counts = {}
     itopod_tier_map = {
-                       1: 0,
-                       2: 50,
-                       3: 100,
-                       4: 150,
-                       5: 200,
-                       6: 250,
-                       7: 300,
-                       8: 350,
-                       9: 400,
-                       10: 450,
-                       11: 500,
-                       12: 550,
-                       13: 600,
-                       14: 650,
-                       15: 700,
-                       16: 750,
-                       17: 800,
-                       18: 850,
-                       19: 900,
-                       20: 950,
-                       }
+        1: 0,
+        2: 50,
+        3: 100,
+        4: 150,
+        5: 200,
+        6: 250,
+        7: 300,
+        8: 350,
+        9: 400,
+        10: 450,
+        11: 500,
+        12: 550,
+        13: 600,
+        14: 650,
+        15: 700,
+        16: 750,
+        17: 800,
+        18: 850,
+        19: 900,
+        20: 950,
+    }
     itopod_ap_gained = 0
     itopod_kills = 0
     completed_wishes = []
@@ -61,7 +61,7 @@ class Features(Navigation, Inputs):
         self.menu("inventory")
         for slot in coords.EQUIPMENT_SLOTS:
             if (slot == "cube"):
-                self.click(*coords.EQUIPMENT_SLOTS[slot], "right")
+                # self.click(*coords.EQUIPMENT_SLOTS[slot], "right")
                 return
             self.click(*coords.EQUIPMENT_SLOTS[slot])
             self.send_string("a")
@@ -535,7 +535,7 @@ class Features(Navigation, Inputs):
 
             while time.time() < start + duration:
                 print(f"Sniping itopod for {duration} seconds while waiting to cast spell.")
-                self.itopod_snipe(duration)
+                #self.itopod_snipe(duration)
             self.spells()
             self.click(*targets[target])
 
@@ -616,7 +616,7 @@ class Features(Navigation, Inputs):
         """
         self.menu("digger")
         for i in targets:
-            page = ((i-1)//4)
+            page = ((i - 1) // 4)
             item = i - (page * 4)
             self.click(*coords.DIG_PAGE[page])
             if deactivate:
@@ -741,7 +741,7 @@ class Features(Navigation, Inputs):
         tough = self.ocr(*coords.OCR_ADV_TOUGH, bmp=bmp)
 
         if (float(power) > coords.TITAN_PT[target]["p"] and
-           float(tough) > coords.TITAN_PT[target]["t"]):
+                float(tough) > coords.TITAN_PT[target]["t"]):
             return True
 
         else:
@@ -773,7 +773,7 @@ class Features(Navigation, Inputs):
         if "titan" in available.lower():
             time.sleep(1.5)  # Make sure titans spawn, otherwise loop breaks
             queue = deque(self.get_ability_queue())
-            while self.check_pixel_color(*coords.IS_ENEMY_ALIVE):
+            while 1 > 0:  # self.check_pixel_color(*coords.IS_ENEMY_ALIVE):
                 if len(queue) == 0:
                     print("NEW QUEUE")
                     queue = deque(self.get_ability_queue())
@@ -933,6 +933,12 @@ class Features(Navigation, Inputs):
         if coords:
             self.ctrl_click(*slot)
 
+#    def clean_ocr_number(self, string):
+#        """Strip out everything before the number and after the number and
+#        remove any comma's if they are any"""
+
+
+
     def get_idle_cap(self, resource):
         """Get the available idle energy, magic, or resource 3."""
         try:
@@ -943,19 +949,25 @@ class Features(Navigation, Inputs):
             else:
                 res = self.ocr(*coords.OCR_R3)
 
+            res = res.strip('/')
+            res = res.replace(",", "")
+#            print("Res(" + res + ")")
             match = re.search(r".*(\d+\.\d+E\+\d+)", res)
+#            print("Match(" + match + ")")
 
             if match is not None:
                 return int(float(match.group(1)))
             elif match is None:
                 match = self.remove_letters(res)
-                if match is not None:
+                if match is not None or res.strip() == "0":
                     return int(match)
                 if match is None:
                     return 0
         except ValueError:
+            print("Match(" + str(match) + ") Res(" + str(res) + ")" + str(resource))
             print("couldn't get idle cap")
             return 0
+
     def get_curr_ngu(self):
         """Get the current running NGU Numbers fore a rebirth"""
         tmp_nav_menu = ""
@@ -966,8 +978,8 @@ class Features(Navigation, Inputs):
         nngu = self.ocr(*coords.OCR_NNGU)
         if tmp_nav_menu != "":
             self.menu(tmp_nav_menu)
-#        print("Current NGU:" + cngu + " New NGU at rebirth:" +nngu)
-        return(cngu, nngu)
+        #        print("Current NGU:" + cngu + " New NGU at rebirth:" +nngu)
+        return (cngu, nngu)
 
     def get_quest_text(self):
         """Check if we have an active quest or not."""
@@ -1128,7 +1140,8 @@ class Features(Navigation, Inputs):
                             current_qp = 0
 
                         gained_qp = current_qp - start_qp
-                        print(f"Completed quest in zone #{count} at {datetime.datetime.now().strftime('%H:%M:%S')} for {gained_qp} QP")
+                        print(
+                            f"Completed quest in zone #{count} at {datetime.datetime.now().strftime('%H:%M:%S')} for {gained_qp} QP")
 
                         return
 
@@ -1207,7 +1220,7 @@ class Features(Navigation, Inputs):
         self.send_string(value // len(targets))
         self.menu("hacks")
         for i in targets:
-            page = ((i-1)//8)
+            page = ((i - 1) // 8)
             item = i - (page * 8)
             self.click(*coords.HACK_PAGE[page])
             self.click(*coords.HACKS[item])
@@ -1218,7 +1231,7 @@ class Features(Navigation, Inputs):
         if magic:
             return self.check_pixel_color(*coords.COLOR_WANDOOS_MAGIC_BB)
         return self.check_pixel_color(*coords.COLOR_WANDOOS_ENERGY_BB)
-    
+
     def itopod_ap(self, duration):
         """Abuse an oversight in the kill counter for AP rewards for mucher higher AP/h in ITOPOD.
         If you use this method, make sure you do not retoggle idle mode in adventure in other parts
@@ -1280,6 +1293,30 @@ class Features(Navigation, Inputs):
             self.itopod_ap_gained += 1
             print(f"Kills: {self.itopod_kills}\nAP gained: {self.itopod_ap_gained}")
         return
+
+    def YGG_harvest_activate(self):
+        """ Eat/Harvest all Max tier fruits then activate them.
+        Currently you need to have Idle EM for this to work properly"""
+
+        self.menu("yggdrasil")
+        self.click(*coords.YGG_EAT_MAX_TIER, button="left")
+        time.sleep(0.1)
+        self.click(625, 500)  # click somewhere to move tooltip
+        bmp = self.get_bitmap()
+        for r in range(0, 9, 1):
+            string = self.ocr(*coords.YGG_ACTIVATE[r], bmp=bmp)
+            string = string.strip("|\n")
+            string = string.strip()
+            #    print(string)
+            if string == "Activate":
+                #                print(*coords.YGG_ACTIVATE[r])
+                click_x, click_y, *_ = coords.YGG_ACTIVATE[r]
+                click_x += 20
+                click_y += 8
+                #                print("Click " + str(click_x) + " " + str(click_y))
+                #                print(string.strip("|"))
+                self.click(click_x, click_y, button="left")
+
 
 """epow = 13544420000000
 ecap = 1.9e16

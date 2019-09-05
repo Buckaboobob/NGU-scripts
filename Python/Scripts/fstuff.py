@@ -36,6 +36,7 @@ def getcrop():
 #    print(str(sizx)+ " " + str(sizy)+ " " + str(locx)+ " " + str(locy))
 
 #    image = pygame.image.load(r'screenshots/screen.png')
+
     screen.fill(myfill)
     mytext = "X:" + str(locx)
     text = font.render(mytext, True, ((255, 255, 255)))
@@ -50,6 +51,7 @@ def getcrop():
     text = font.render(mytext, True, ((255, 255, 255)))
     screen.blit(text, (600, 180))
 #    screen.blit(pygame.transform.scale(image, (sizx * zoom, sizy * zoom)), (10, 10), (locx, locy, sizx, sizy))
+
     screen.blit(image, (10, 10), (locx, locy, sizx, sizy))
     pygame.display.update()
     
@@ -145,7 +147,7 @@ def main():
                     getcrop()
                 if event.key == K_KP6:
                     if shift == True:
-                        size += 5
+                        sizx += 5
                     else :
                         sizx += 1
                     getcrop()

@@ -111,9 +111,11 @@ class Navigation(Inputs):
 
     def perks(self):
         """Navigate to Perks screen."""
+#        print(Navigation.current_menu)
         if Navigation.current_menu == 'perks':
             return
         self.menu('adventure')
+        time.sleep(userset.SHORT_SLEEP)
         self.click(*coords.ITOPOD_PERKS)
         time.sleep(userset.SHORT_SLEEP)
         Navigation.current_menu = 'perks'

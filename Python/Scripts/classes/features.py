@@ -433,7 +433,7 @@ class Features(Navigation, Inputs):
         if reverse:
             for i in range(target, 0, -1):
                 self.click(*coords.BM[i])
-                return
+            return
         for i in range(target):
             self.click(*coords.BM[i])
 
@@ -961,10 +961,15 @@ class Features(Navigation, Inputs):
                 match = self.remove_letters(res)
                 if match is not None or res.strip() == "0":
                     return int(match)
+                if res.strip() == "O":
+                    return 0
                 if match is None:
                     return 0
         except ValueError:
             print("Match(" + str(match) + ") Res(" + str(res) + ")" + str(resource))
+            if resource == 1:
+                res = self.ocr(*coords.OCR_ENERGY, debug=True)
+                print("OCR returned: ({})", format(res))
             print("couldn't get idle cap")
             return 0
 
@@ -1303,8 +1308,9 @@ class Features(Navigation, Inputs):
         time.sleep(0.1)
         self.click(625, 500)  # click somewhere to move tooltip
         bmp = self.get_bitmap()
-        for r in range(0, 9, 1):
-            string = self.ocr(*coords.YGG_ACTIVATE[r], bmp=bmp)
+        for r in userset.YGG_UNLOCKED:
+            print(r)
+            string = self.ocr(*coords.YGG_ACTIVATE[r], bmp=bmp, debug=True)
             string = string.strip("|\n")
             string = string.strip()
             #    print(string)

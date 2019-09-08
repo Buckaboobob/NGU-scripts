@@ -37,22 +37,24 @@ def speedrun(duration, f):
 
     if rt < 60:
         f.loadout(1)  # Gold drop equipment
-        f.adventure(highest=True)
+        f.adventure(zone=15)
         t_end = time.time() + 60
         while time.time() < t_end and rt < end - 20:
-            for x in range(1, 8, 1):
-                f.time_machine(1e6, magic=True)
+            for x in range(1, 20, 1):
+                f.time_machine(2e6, magic=True)
                 time.sleep(0.5)
             f.augments({"CI": 0.7, "ML": 0.3}, 1.5e6)
-        f.loadout(3)  # Bar/power equimpent
+        f.loadout(4)  # Bar/power equimpent
 #        tracker.get_tm_allocated()
 #        print("Energy Allocated: " + tracker.mystats['TM'][0])
 #        print("Magic Allocated: " + tracker.mystats['TM'][1])
         f.adventure(itopod=True, itopodauto=True)
-        f.augments({"CI": 0.7, "ML": 0.3},1.5e6)
+#        f.augments({"CI": 0.7, "ML": 0.3},1.5e6)
+        f.time_machine(2e6, magic=True)
         time.sleep(10)
-        f.blood_magic(3, reverse=True)
+        f.blood_magic(5, reverse=True)
         f.wandoos(True)
+        f.gold_diggers([2])
 
     while rt < end - 300:
         t_end = time.time() + 60
@@ -61,17 +63,23 @@ def speedrun(duration, f):
             my_interval += 1
             f.wandoos(True)
             time.sleep(0.5)
+            f.time_machine(2e6, magic=True)
+            time.sleep(0.5)
             f.augments({"CI": 0.9, "ML": 0.1}, f.get_idle_cap(1))
             if my_interval == 8:
-                f.blood_magic(3, reverse=True)
+                f.gold_diggers([2])
+                time.sleep(0.5)
+                f.blood_magic(5, reverse=True)
 #        f.gold_diggers([3])
         rt = f.rt = f.rt_to_seconds()
     if rt > end - 300:
+        f.boost_equipment()
+        f.boost_cube()
         f.send_string("r")
         f.send_string("t")
-        f.blood_magic(3, reverse=True)
+        f.blood_magic(5, reverse=True)
         f.augments({"CI": 0.3, "ML": 0.7}, f.get_idle_cap(1))
-        f.gold_diggers([3])
+        f.gold_diggers([2, 3])
         f.fight()
     while rt < end + 30:
         time.sleep(1)
@@ -121,7 +129,7 @@ w = Window()
 i = Inputs()
 nav = Navigation()
 feature = Features()
-ngui = NGUI(nav)
+#ngui = NGUI(nav)
 
 
 Window.x, Window.y = i.pixel_search(coords.TOP_LEFT_COLOR, 0, 0, 400, 600)

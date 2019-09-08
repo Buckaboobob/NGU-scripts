@@ -20,21 +20,25 @@ class Stats(Navigation):
     track_xp = True
     track_pp = True
 
-    def set_value_with_ocr(self, value):
+    def set_value_with_ocr(self, value, debug=False):
         """Store start EXP via OCR."""
-        debug = False
+#        debug = False
+        Navigation.current_menu = ""
         try:
             if value == "TOTAL XP":
                 self.misc()
-                Stats.total_xp = self.ocr_notation(*coords.OCR_TOTAL_EXP)
+                Stats.total_xp = self.ocr_notation(*coords.OCR_TOTAL_EXP, debug=debug)
                 # print("OCR Captured TOTAL XP: {:,}".format(Stats.total_xp))
             elif value == "XP":
                 self.exp()
-                Stats.xp = self.ocr_number(*coords.OCR_EXP)
+                Stats.xp = self.ocr_number(*coords.OCR_EXP, debug=debug)
                 # print("OCR Captured Current XP: {:,}".format(Stats.xp))
             elif value == "PP":
+                print("({})".format(Navigation.current_menu))
                 self.perks()
-                Stats.pp = self.ocr_number(*coords.OCR_PP)
+                time.sleep(0.5)
+                Stats.pp = self.ocr_number(*coords.OCR_PP, debug=debug)
+                print("({})".format(Navigation.current_menu))
                 # print("OCR Captured Current PP: {:,}".format(Stats.pp))
             Stats.OCR_failed = False
             Stats.OCR_failures = 0
@@ -45,7 +49,7 @@ class Stats(Navigation):
                 if Stats.OCR_failures >= 2:
                     print("Clearing Navigation.current_menu")
                     Navigation.current_menu = ""
-                self.set_value_with_ocr(value)
+                self.set_value_with_ocr(value, debug=True)
             else:
                 print("Something went wrong with the OCR")
                 Stats.OCR_failures = 0

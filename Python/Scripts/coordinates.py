@@ -263,18 +263,18 @@ FRUITS = {
     8: FRUIT_ARB,
     9: FRUIT_NUMBERS
 }
-YGG_ACTION_SEARCH_AREA = OCRBox(317, 163, 863, 382)
+YGG_ACTION_SEARCH_AREA = OCRBox(317, 163, 806, 382)
 YGG_EAT_ALL = Pixel(815, 490)
 YGG_EAT_MAX_TIER = Pixel(815, 445)
-YGG_ACTIVATE = [OCRBox(321, 167, 376, 184),  # Fruit of Gold/Rage
-                OCRBox(531, 167, 586, 184),  # Fruit of Power Alpha/MacGuffin alpha
-                OCRBox(746, 167, 801, 184),  # Fruit of Adventure/Power Delta?
-                OCRBox(321, 262, 376, 279),  # Fruit of Knowledge/Watermellon
-                OCRBox(531, 262, 586, 279),  # Pomegranate/MacGuffin Beta
-                OCRBox(746, 262, 801, 279),  # Fruit of Luck/NA
-                OCRBox(321, 359, 376, 376),  # Fruit of Power Beta/NA
-                OCRBox(531, 359, 586, 376),  # Fruit of Arbitrariness/NA
-                OCRBox(746, 359, 801, 376)]  # Fruit of numbers/NA
+YGG_ACTIVATE = [OCRBox(323, 168, 374, 185),  # Fruit of Gold/Rage
+                OCRBox(534, 168, 585, 185),  # Fruit of Power Alpha/MacGuffin alpha
+                OCRBox(746, 168, 797, 185),  # Fruit of Adventure/Power Delta?
+                OCRBox(324, 264, 375, 281),  # Fruit of Knowledge/Watermellon
+                OCRBox(535, 264, 586, 281),  # Pomegranate/MacGuffin Beta
+                OCRBox(746, 264, 797, 281),  # Fruit of Luck/NA
+                OCRBox(323, 359, 374, 376),  # Fruit of Power Beta/NA
+                OCRBox(534, 359, 585, 376),  # Fruit of Arbitrariness/NA
+                OCRBox(746, 359, 797, 376)]  # Fruit of numbers/NA
 
 # REBIRTH OFFSETS
 REBIRTH = Pixel(90, 420)
@@ -360,8 +360,8 @@ OCR_ADV_TR_3_ALLOCATED = OCRBox(648, 335, 775, 358)
 OCR_ADV_TR_4_ALLOCATED = OCRBox(648, 375, 775, 398)
 
 # STATS OCR
-OCR_ENERGY = OCRBox(12, 28, 165, 50)
-OCR_MAGIC = OCRBox(12, 70, 165, 90)
+OCR_ENERGY = OCRBox(13, 31, 161, 53)
+OCR_MAGIC = OCRBox(13, 71, 161, 91)
 OCR_R3 = OCRBox(12, 110, 162, 133)
 
 # OCR CHALLENGES

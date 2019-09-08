@@ -178,6 +178,7 @@ class Inputs():
         # Bitmaps are created with a 8px border
         search_area = bmp.crop((x_start + 8, y_start + 8,
                                 x_end + 8, y_end + 8))
+        search_area.save("screenshots/debug_ocr" + datetime.datetime.now().strftime('%d-%m-%y-%H-%M-%S') + ".png")
         search_area = numpy.asarray(search_area)
         search_area = cv2.cvtColor(search_area, cv2.COLOR_RGB2GRAY)
         template = cv2.imread(image, 0)
@@ -272,13 +273,13 @@ class Inputs():
         self.ocr(x_1, y_1, x_2, y_2, debug=True, bmp=bmp)
         return -1
 
-    def ocr_number(self, x_1, y_1, x_2, y_2):
+    def ocr_number(self, x_1, y_1, x_2, y_2, debug=False):
         """Remove all non-digits."""
-        return int(self.remove_letters(self.ocr(x_1, y_1, x_2, y_2)))
+        return int(self.remove_letters(self.ocr(x_1, y_1, x_2, y_2, debug=debug)))
 
-    def ocr_notation(self, x_1, y_1, x_2, y_2):
+    def ocr_notation(self, x_1, y_1, x_2, y_2, debug=False):
         """Convert scientific notation from string to int."""
-        return int(float(self.ocr(x_1, y_1, x_2, y_2)))
+        return int(float(self.ocr(x_1, y_1, x_2, y_2, debug=debug)))
 
     def save_screenshot(self):
         """Save a screenshot of the game."""

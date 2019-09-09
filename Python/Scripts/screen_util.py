@@ -46,6 +46,7 @@ print(" Keypad + - to change zoom")
 print("Space to take a new screen screenshot")
 print("s to save the displayed area without any zoom")
 print("Hit Escape to exit.. This Display window should be in focus or the input probably wont work")
+print("The click Value is the middle(ish) of the box that is being displayed")
 
 def getcrop():
     global screen

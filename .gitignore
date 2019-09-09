@@ -5,6 +5,7 @@ debug.py
 debug_ocr.png
 local_env.py
 **/.idea
+**/*test.py
 
 Python/Scripts/ngu_icon\.ico
 Python/Scripts/ngu_icon\.png
@@ -12,7 +13,5 @@ Python/Scripts/custom3min.py
 Python/Scripts/usersettings.py
 Python/Scripts/customitopodsnipe.py
 Python/Scripts/Screenshots
-Python/Scripts/test.py
-Python/Scripts/1test.py
 Python/Scripts/images/Thumbs.db
 Python/Scripts/images/activate.old.png

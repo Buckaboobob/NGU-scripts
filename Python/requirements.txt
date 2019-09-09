@@ -3,4 +3,5 @@ pytesseract
 opencv-python
 pillow
 discord-webhook
+pygame
 deprecated

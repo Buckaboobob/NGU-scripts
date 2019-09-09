@@ -182,6 +182,11 @@ TM_SPEED = Pixel(532, 233)
 TM_MULT = Pixel(532, 330)
 TM_SPEED_MINUS = Pixel(570, 236)
 TM_MULT_MINUS = Pixel(570, 335)
+OCR_TM_MAGIC_ALLOCATED = OCRBox(690, 324, 847, 341)
+OCR_TM_ENERGY_ALLOCATED = OCRBox(690, 224, 847, 241)
+OCR_TM_ENERGY_LVL = OCRBox(849, 223, 935, 246)
+OCR_TM_MAGIC_LVL = OCRBox(843, 321, 946, 343)
+
 # BLOOD MAGIC OFFSETS
 BM_LOCKED = Pixel(231, 276)
 
@@ -203,6 +208,14 @@ BM_RECLAIM = [Pixel(BM_RECLAIM_X, 228), Pixel(BM_RECLAIM_X, 263), Pixel(BM_RECLA
               Pixel(BM_RECLAIM_X, 369), Pixel(BM_RECLAIM_X, 403), Pixel(BM_RECLAIM_X, 438), Pixel(BM_RECLAIM_X, 473)]
 
 OCR_BM_SPELL_TEXT = OCRBox(440, 350, 800, 412)
+OCR_BM_ALLOCATED = [OCRBox(670, 219, 827, 236),  # Poke yourself with a tack
+                    OCRBox(670, 254, 827, 271),  # Fifty Papercuts
+                    OCRBox(670, 289, 827, 306),  # A Big-Ass Hickey
+                    OCRBox(670, 324, 827, 341),  # Eat a bowl of barbed wire
+                    OCRBox(670, 359, 827, 376),  # Grand Theft Blood Bank
+                    OCRBox(670, 394, 827, 411),  # Self Decapitation
+                    OCRBox(670, 429, 827, 446),  # Hug a Woodchipper
+                    OCRBox(670, 464, 827, 481)]  # Turn Yourself inside out
 
 # TODO: AUGMENTATION OFFSETS
 AUGMENT_X = 535
@@ -219,6 +232,27 @@ AUG_SCROLL_TOP = Pixel(945, 264)
 AUG_SCROLL_BOT = Pixel(945, 575)
 AUG_SCROLL_SANITY_TOP = Pixel(943, 261)
 AUG_SCROLL_SANITY_BOT = Pixel(943, 578)
+AUG = {"LEVELS": [OCRBox(694, 250, 816, 276),
+                  OCRBox(694, 283, 816, 300),
+                  OCRBox(694, 317, 816, 339),
+                  OCRBox(694, 347, 816, 369),
+                  OCRBox(694, 382, 816, 404),
+                  OCRBox(694, 412, 816, 434),
+                  OCRBox(694, 447, 816, 469),
+                  OCRBox(694, 477, 816, 499),
+                  OCRBox(694, 512, 816, 534),
+                  OCRBox(694, 542, 816, 564)],
+
+       "Energy": [OCRBox(818, 250, 940, 276),
+                  OCRBox(818, 283, 940, 300),
+                  OCRBox(818, 317, 940, 339),
+                  OCRBox(818, 347, 940, 369),
+                  OCRBox(818, 382, 940, 404),
+                  OCRBox(818, 412, 940, 434),
+                  OCRBox(818, 447, 940, 469),
+                  OCRBox(818, 477, 940, 499),
+                  OCRBox(818, 512, 940, 534),
+                  OCRBox(818, 542, 940, 564)]}
 
 # TODO: NGU OFFSETS
 NGU_TARGET = Pixel(635, 205)
@@ -240,6 +274,20 @@ ADV_TRAINING_POWER = Pixel(890, 270)
 ADV_TRAINING_BLOCK = Pixel(890, 310)
 ADV_TRAINING_WANDOOS_ENERGY = Pixel(890, 350)
 ADV_TRAINING_WANDOOS_MAGIC = Pixel(890, 390)
+OCR_ADV_TR_0_ALLOCATED = OCRBox(648, 215, 775, 238)
+OCR_ADV_TR_0_LVL = OCRBox(523, 215, 656, 238)
+
+OCR_ADV_TR_1_ALLOCATED = OCRBox(648, 255, 775, 278)
+OCR_ADV_TR_1_LVL = OCRBox(523, 255, 656, 278)
+
+OCR_ADV_TR_2_ALLOCATED = OCRBox(648, 295, 775, 318)
+OCR_ADV_TR_2_LVL = OCRBox(523, 295, 656, 318)
+
+OCR_ADV_TR_3_ALLOCATED = OCRBox(648, 335, 775, 358)
+OCR_ADV_TR_3_LVL = OCRBox(523, 334, 656, 357)
+
+OCR_ADV_TR_4_ALLOCATED = OCRBox(648, 375, 775, 398)
+OCR_ADV_TR_4_LVL = OCRBox(523, 374, 656, 397)
 
 # YGGDRASIL OFFSETS
 HARVEST = Pixel(814, 450)
@@ -296,6 +344,8 @@ SPIN = Pixel(713, 562)
 WANDOOS_ENERGY = Pixel(626, 252)
 WANDOOS_MAGIC = Pixel(626, 350)
 WANDOOS_VERSION = [Pixel(325, 420), Pixel(325, 445), Pixel(325, 470)]
+OCR_WANDOOS_MAGIC_ALLOCATED = OCRBox(646, 339, 803, 356)
+OCR_WANDOOS_ENERGY_ALLOCATED = OCRBox(646, 241, 803, 258)
 
 # OCR OFFSETS
 OCR_CNGU = OCRBox(381, 150, 569, 174)
@@ -309,55 +359,6 @@ OCR_BAR = OCRBox(790, 295, 939, 311)
 OCR_ECAP = OCRBox(9, 44, 165, 63)
 OCR_TOTAL_EXP = OCRBox(510, 365, 928, 400)  # From MISC Info
 OCR_NGU_E = OCRBox(820, 190, 940, 219)
-# WANDOOS OCR OFFSETS
-
-OCR_WANDOOS_MAGIC_ALLOCATED = OCRBox(646, 339, 803, 356)
-OCR_WANDOOS_ENERGY_ALLOCATED = OCRBox(646, 241, 803, 258)
-
-# TimeMachine OCR OFFSETS
-
-OCR_TM_MAGIC_ALLOCATED = OCRBox(690, 324, 847, 341)
-OCR_TM_ENERGY_ALLOCATED = OCRBox(690, 224, 847, 241)
-
-# BloodMagic OCR OFFSETS
-
-OCR_BM_ALLOCATED = [OCRBox(670, 219, 827, 236),  # Poke yourself with a tack
-                    OCRBox(670, 254, 827, 271),  # Fifty Papercuts
-                    OCRBox(670, 289, 827, 306),  # A Big-Ass Hickey
-                    OCRBox(670, 324, 827, 341),  # Eat a bowl of barbed wire
-                    OCRBox(670, 359, 827, 376),  # Grand Theft Blood Bank
-                    OCRBox(670, 394, 827, 411),  # Self Decapitation
-                    OCRBox(670, 429, 827, 446),  # Hug a Woodchipper
-                    OCRBox(670, 464, 827, 481)]  # Turn Yourself inside out
-# OCR_BM_0_ALLOCATED = OCRBox(670, 219, 827, 236)
-# OCR_BM_1_ALLOCATED = OCRBox(670, 254, 827, 271)
-# OCR_BM_2_ALLOCATED = OCRBox(670, 289, 827, 306)
-# OCR_BM_3_ALLOCATED = OCRBox(670, 324, 827, 341)
-# OCR_BM_4_ALLOCATED = OCRBox(670, 359, 827, 376)
-# OCR_BM_5_ALLOCATED = OCRBox(670, 394, 827, 411)
-# OCR_BM_6_ALLOCATED = OCRBox(670, 429, 827, 446)
-# OCR_BM_7_ALLOCATED = OCRBox(670, 464, 827, 481)
-
-# AUGMENTATION OCR OFFSETS
-
-OCR_AUG_0 = OCRBox(694, 253, 821, 273)
-OCR_AUG_1 = OCRBox(694, 283, 821, 300)
-OCR_AUG_2 = OCRBox(694, 317, 821, 339)
-OCR_AUG_3 = OCRBox(694, 347, 821, 369)
-OCR_AUG_4 = OCRBox(694, 382, 821, 404)
-OCR_AUG_5 = OCRBox(694, 412, 821, 434)
-OCR_AUG_6 = OCRBox(694, 447, 821, 469)
-OCR_AUG_7 = OCRBox(694, 477, 821, 499)
-OCR_AUG_8 = OCRBox(694, 512, 821, 534)
-OCR_AUG_9 = OCRBox(694, 542, 821, 564)
-# TODO get the rest of them
-
-# ADV TRAINING OCR OFFSETS
-OCR_ADV_TR_0_ALLOCATED = OCRBox(648, 215, 775, 238)
-OCR_ADV_TR_1_ALLOCATED = OCRBox(648, 255, 775, 278)
-OCR_ADV_TR_2_ALLOCATED = OCRBox(648, 295, 775, 318)
-OCR_ADV_TR_3_ALLOCATED = OCRBox(648, 335, 775, 358)
-OCR_ADV_TR_4_ALLOCATED = OCRBox(648, 375, 775, 398)
 
 # STATS OCR
 OCR_ENERGY = OCRBox(13, 31, 161, 53)

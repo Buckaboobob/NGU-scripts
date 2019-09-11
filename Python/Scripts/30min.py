@@ -31,23 +31,26 @@ def speedrun(duration, f):
     end = (duration * 60) + 1
     itopod_advance = False
     f.nuke()
+    f.adventure(zone=13, highest=False)
 #    tracker.get_tm_allocated(self)
 #    print("Energy Allocated: " + tracker.mystats['TM'][0])
 #    print("Magic Allocated: " + tracker.mystats['TM'][1])
 
     if rt < 60:
         f.loadout(1)  # Gold drop equipment
-        f.adventure(zone=15)
+#        f.adventure(zone=15, highest=False)
         t_end = time.time() + 60
         while time.time() < t_end and rt < end - 20:
             for x in range(1, 20, 1):
                 f.time_machine(2e6, magic=True)
                 time.sleep(0.5)
             f.augments({"CI": 0.7, "ML": 0.3}, 1.5e6)
+#        f.snipe(15, 3, bosses=True, once=True, manual=True)
         f.loadout(4)  # Bar/power equimpent
 #        tracker.get_tm_allocated()
 #        print("Energy Allocated: " + tracker.mystats['TM'][0])
 #        print("Magic Allocated: " + tracker.mystats['TM'][1])
+
         f.adventure(itopod=True, itopodauto=True)
 #        f.augments({"CI": 0.7, "ML": 0.3},1.5e6)
         f.time_machine(2e6, magic=True)
@@ -135,7 +138,7 @@ feature = Features()
 Window.x, Window.y = i.pixel_search(coords.TOP_LEFT_COLOR, 0, 0, 400, 600)
 nav.menu("inventory")
 
-u = UpgradeEM(10000, 10000, 2, 2, 1)
+u = UpgradeEM(37500, 37500, 1, 1, 3)
 r3unlocked = False
 
 print(f"Top left found at: {w.x}, {w.y}")

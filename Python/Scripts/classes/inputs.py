@@ -107,7 +107,7 @@ class Inputs():
             win32gui.PostMessage(window.id, wcon.WM_KEYUP, ord(c.upper()), 0)
         time.sleep(userset.SHORT_SLEEP)
 
-    def get_bitmap(self):
+    def get_bitmap(self, crop=False):
         """Get and return a bitmap of the window."""
         left, top, right, bot = win32gui.GetWindowRect(window.id)
         w = right - left
@@ -132,6 +132,8 @@ class Inputs():
         save_dc.DeleteDC()
         mfc_dc.DeleteDC()
         win32gui.ReleaseDC(window.id, hwnd_dc)
+        if crop is True:
+            bmp = bmp.crop((window.x, window.y, window.x + 960, window.y + 600))
 #        bmp.save("asdf.png")
         return bmp
 
@@ -155,7 +157,7 @@ class Inputs():
 
         return None
 
-    def image_search(self, x_start, y_start, x_end, y_end, image, threshold, bmp=None):
+    def image_search(self, x_start, y_start, x_end, y_end, image, threshold, bmp=None, debug=False):
         """Search the screen for the supplied picture.
 
         Returns a tuple with x,y-coordinates, or None if result is below
@@ -178,7 +180,8 @@ class Inputs():
         # Bitmaps are created with a 8px border
         search_area = bmp.crop((x_start + 8, y_start + 8,
                                 x_end + 8, y_end + 8))
-        search_area.save("screenshots/debug_ocr" + datetime.datetime.now().strftime('%d-%m-%y-%H-%M-%S') + ".png")
+        if debug is True:
+            search_area.save("screenshots/debug_ocr" + datetime.datetime.now().strftime('%d-%m-%y-%H-%M-%S') + ".png")
         search_area = numpy.asarray(search_area)
         search_area = cv2.cvtColor(search_area, cv2.COLOR_RGB2GRAY)
         template = cv2.imread(image, 0)

@@ -986,6 +986,12 @@ class Features(Navigation, Inputs):
         #        print("Current NGU:" + cngu + " New NGU at rebirth:" +nngu)
         return (cngu, nngu)
 
+    def test_ygg(self):
+        bmp = self.get_bitmap(crop=True)
+        bmp.save("screenshots/thgusdebug_ocr" + datetime.datetime.now().strftime('%d-%m-%y-%H-%M-%S') + ".png")
+        results = self.image_search(*coords.YGG_ACTION_SEARCH_AREA, image="images/activate.png", threshold=0.95, bmp=bmp)
+        print(results)
+
     def get_quest_text(self):
         """Check if we have an active quest or not."""
         self.menu("questing")

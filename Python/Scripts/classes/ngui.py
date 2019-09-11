@@ -16,8 +16,8 @@ class NGUI(Navigation, Inputs):
     def get_tm_allocated(self):
         self.menu('timemachine')
         bmp = self.get_bitmap()
-        self.allocated['TM'][0] = self.get_ocr_number(*coords.OCR_TM_ENERGY_ALLOCATED, bmp=bmp, debug=True)
-        self.allocated['TM'][1] = self.get_ocr_number(*coords.OCR_TM_MAGIC_ALLOCATED, bmp=bmp, debug=True)
+        self.allocated['TM'][0] = self.get_ocr_number(*coords.OCR_TM_ENERGY_ALLOCATED, bmp=bmp)
+        self.allocated['TM'][1] = self.get_ocr_number(*coords.OCR_TM_MAGIC_ALLOCATED, bmp=bmp)
         return
 
     def get_wandoos_allocated(self):

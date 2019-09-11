@@ -14,14 +14,16 @@ def start_procedure(f, rt):
     """Procedure that handles start of rebirth."""
     print("Boosting/Merging")
     nav.menu("inventory")
-    f.merge_equipment()
-#    f.boost_equipment()
-    f.merge_inventory(3)
+#    f.merge_equipment()
+    f.boost_equipment()
+    f.merge_inventory(10)
 #    f.boost_inventory(1)
     f.boost_cube()
 #    f.reclaim_bm()
     f.reclaim_ngu(magic=True)
     f.reclaim_ngu()
+    feature.pit(loadout=3)
+    f.loadout(4)
     f.YGG_harvest_activate()
     idle_magic = f.get_idle_cap(2)
     idle_energy = f.get_idle_cap(1)
@@ -30,18 +32,18 @@ def start_procedure(f, rt):
         idle_energy = f.get_idle_cap(1)
         if idle_energy != 0:
             print("Reassign NGU Energy")
-            f.assign_ngu(idle_energy, [4])
+            f.assign_ngu(idle_energy, [1])
         idle_magic = f.get_idle_cap(2)
         if idle_magic != 0:
             print("Reassign NGU Magic")
-            f.assign_ngu(idle_magic, [4], magic=True)
+            f.assign_ngu(idle_magic, [1], magic=True)
 #            f.blood_magic(7, reverse=True)
         idle_magic = f.get_idle_cap(2)
         idle_energy = f.get_idle_cap(1)
     nav.menu("inventory")
     print("sleeping 90 Seconds")
-    time.sleep(900)
-#    f.itopod_snipe(300)
+#    time.sleep(900)
+    f.itopod_snipe(600)
     print("Done Sleeping")
 
 
@@ -84,7 +86,7 @@ while True:
     #    else:
     #    feature.ygg()
     feature.save_check()
-    feature.pit()
+
     start_procedure(feature, rt)
 #    time.sleep(300)
 #    print(str(rt))

@@ -1310,24 +1310,32 @@ class Features(Navigation, Inputs):
         Currently you need to have Idle EM for this to work properly"""
 
         self.menu("yggdrasil")
+        self.click(*coords.YGG_PAGE1)
         self.click(*coords.YGG_EAT_MAX_TIER, button="left")
-        time.sleep(0.1)
+        time.sleep(userset.SHORT_SLEEP)
         self.click(625, 500)  # click somewhere to move tooltip
         bmp = self.get_bitmap()
         for r in userset.YGG_UNLOCKED:
             print(r)
-            string = self.ocr(*coords.YGG_ACTIVATE[r], bmp=bmp, debug=True)
+            i = r
+            if r > 8:
+                self.click(*coords.YGG_PAGE2)
+                time.sleep(userset.SHORT_SLEEP)
+                bmp = self.get_bitmap()
+                i -= 8
+            string = self.ocr(*coords.YGG_ACTIVATE[i], bmp=bmp)
             string = string.strip("|\n")
             string = string.strip()
             #    print(string)
             if string == "Activate":
                 #                print(*coords.YGG_ACTIVATE[r])
-                click_x, click_y, *_ = coords.YGG_ACTIVATE[r]
+                click_x, click_y, *_ = coords.YGG_ACTIVATE[i]
                 click_x += 20
                 click_y += 8
                 #                print("Click " + str(click_x) + " " + str(click_y))
                 #                print(string.strip("|"))
                 self.click(click_x, click_y, button="left")
+        self.click(*coords.YGG_PAGE1)
 
 
 """epow = 13544420000000

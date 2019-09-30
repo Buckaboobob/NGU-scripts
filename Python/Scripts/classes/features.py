@@ -1315,14 +1315,14 @@ class Features(Navigation, Inputs):
         time.sleep(userset.SHORT_SLEEP)
         self.click(625, 500)  # click somewhere to move tooltip
         bmp = self.get_bitmap()
-        for r in userset.YGG_UNLOCKED:
+        for r in userset.YGG_ACTIVATE:
             print(r)
             i = r
             if r > 8:
                 self.click(*coords.YGG_PAGE2)
                 time.sleep(userset.SHORT_SLEEP)
                 bmp = self.get_bitmap()
-                i -= 8
+                i -= 9
             string = self.ocr(*coords.YGG_ACTIVATE[i], bmp=bmp)
             string = string.strip("|\n")
             string = string.strip()

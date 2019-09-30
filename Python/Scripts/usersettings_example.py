@@ -14,3 +14,8 @@ SPELL = 300
 
 ERROR_URL = ""
 INFO_URL = ""
+
+# YGG manual update Fruits Start at 0 not 1
+# A list of fruits that need manual activation if you can't get auto activation or it costs too much
+
+YGG_ACTIVATE = [5, 6, 7, 9]

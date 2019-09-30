@@ -16,15 +16,16 @@ def start_procedure(f, rt):
     nav.menu("inventory")
 #    f.merge_equipment()
     f.boost_equipment()
-#    f.merge_inventory(10)
-#    f.boost_inventory(7)
+    f.merge_inventory(16)
+    f.boost_inventory(6)
     f.boost_cube()
 #    f.reclaim_bm()
     f.reclaim_ngu(magic=True)
     f.reclaim_ngu()
-    f.pit()
-#    f.loadout(4)
+#    f.pit()
+    f.loadout(3)
     f.YGG_harvest_activate()
+    f.loadout(4)
     idle_magic = f.get_idle_cap(2)
     idle_energy = f.get_idle_cap(1)
     while any([idle_magic, idle_energy]):
@@ -32,7 +33,7 @@ def start_procedure(f, rt):
         idle_energy = f.get_idle_cap(1)
         if idle_energy != 0:
             print("Reassign NGU Energy")
-            f.assign_ngu(idle_energy, [1, 2, 4, 5, 6])
+            f.assign_ngu(idle_energy, [1, 2, 3, 4, 5, 6, 7])
         idle_magic = f.get_idle_cap(2)
         if idle_magic != 0:
             print("Reassign NGU Magic")
@@ -41,11 +42,13 @@ def start_procedure(f, rt):
         idle_magic = f.get_idle_cap(2)
         idle_energy = f.get_idle_cap(1)
     nav.menu("inventory")
-    secs = 600
+    secs = 300
     print(f"sniping for {secs} Seconds")
 #    time.sleep(secs)
     f.itopod_snipe(secs)
     if f.check_pixel_color(*coords.IS_IDLE):
+        print("Didn't toggle Idle")
+    else:
         print("toggle off idle")
         f.click(*coords.ABILITY_IDLE_MODE)
     print("Done Sniping")

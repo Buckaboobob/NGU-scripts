@@ -21,10 +21,17 @@ class Equipment(Features):
         time.sleep(2)
         rb_time = self.get_rebirth_time()
         while int(rb_time.timestamp.tm_min) < duration:
+            self.adventure(highest=True)
+            if not self.check_pixel_color(*coords.COLOR_TM_LOCKED):
+                self.time_machine(10e6, magic=True)
             self.gold_diggers(diggers)
             self.wandoos(True)
-            self.augments({"SM": 1}, coords.INPUT_MAX)
-            if not self.check_pixel_color(*coords.COLOR_TM_LOCKED):
+            current_boss = int(self.get_current_boss())
+            if current_boss < 28:
+                self.augments(({"SS": 0.3, "MI": 0.3, "CI": 0.3}), 1e6)
+            else:
+                self.augments({"MI": 0.5, "DTMT": 0.5}, coords.INPUT_MAX)
+            if not self.check_pixel_color(*coords.COLOR_BM_LOCKED):
                 self.blood_magic(6)
             self.nuke()
             rb_time = self.get_rebirth_time()
@@ -37,9 +44,9 @@ class Equipment(Features):
 
         If you wish to edit the length or sequence of the rebirths; change the for-loop values
         and durations in the self.speedrun(duration) calls."""
-        self.set_wandoos(0)  # wandoos 98, use 1 for meh
+        self.set_wandoos(1)  # wandoos 98, use 1 for meh
 
-        for x in range(8):
+        for x in range(3):
             self.speedrun(3)
             if not self.check_challenge():
                 return

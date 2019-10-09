@@ -15,17 +15,24 @@ def start_procedure(f, rt):
     print("Boosting/Merging")
     nav.menu("inventory")
 #    f.merge_equipment()
-    f.boost_equipment()
-    f.merge_inventory(16)
-    f.boost_inventory(6)
-    f.boost_cube()
+#    f.merge_inventory(16)
+#    f.boost_inventory(6)
+#    f.boost_equipment()
+#    f.boost_cube()
 #    f.reclaim_bm()
     f.reclaim_ngu(magic=True)
     f.reclaim_ngu()
-#    f.pit()
+    f.pit()
     f.loadout(3)
+    f.gold_diggers([1, 4, 5, 6, 7, 8], deactivate=True)
+    f.gold_diggers([9])
     f.YGG_harvest_activate()
-    f.loadout(4)
+    f.level_diggers()
+    f.gold_diggers([9], deactivate=True)
+    f.gold_diggers([1, 4, 5, 6, 7, 8])
+    f.loadout(2)
+    time.sleep(30)
+    f.loadout(2)
     idle_magic = f.get_idle_cap(2)
     idle_energy = f.get_idle_cap(1)
     while any([idle_magic, idle_energy]):
@@ -33,24 +40,28 @@ def start_procedure(f, rt):
         idle_energy = f.get_idle_cap(1)
         if idle_energy != 0:
             print("Reassign NGU Energy")
-            f.assign_ngu(idle_energy, [1, 2, 3, 4, 5, 6, 7])
+            f.assign_ngu(idle_energy,[7])
+#            f.assign_ngu(idle_energy, [1, 2, 3, 4, 5, 6, 7])
         idle_magic = f.get_idle_cap(2)
         if idle_magic != 0:
             print("Reassign NGU Magic")
-            f.assign_ngu(idle_magic, [5], magic=True)
+            f.assign_ngu(idle_magic, [7], magic=True)
 #            f.blood_magic(7, reverse=True)
         idle_magic = f.get_idle_cap(2)
         idle_energy = f.get_idle_cap(1)
+    sp = f.check_spells_ready()
+    if sp:  # check if any spells are off CD
+        for spell in spells:
+            feature.cast_spell(spell)
     nav.menu("inventory")
-    secs = 300
+    secs = 60
     print(f"sniping for {secs} Seconds")
 #    time.sleep(secs)
-    f.itopod_snipe(secs)
-    if f.check_pixel_color(*coords.IS_IDLE):
-        print("Didn't toggle Idle")
-    else:
-        print("toggle off idle")
-        f.click(*coords.ABILITY_IDLE_MODE)
+    for _ in range(15):
+        time.sleep(secs)
+        f.menu("inventory")
+#        f.boost_equipment()
+        f.boost_inventory(1)
     print("Done Sniping")
 
 

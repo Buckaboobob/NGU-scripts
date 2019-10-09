@@ -13,7 +13,7 @@ class Equipment(Features):
         duration -- duration in minutes to run
         f -- feature object
         """
-        diggers = [2, 3, 11, 12]
+        diggers = [2, 3] #, 11, 12]
         self.nuke()
         time.sleep(2)
         self.fight()
@@ -30,7 +30,7 @@ class Equipment(Features):
             if current_boss < 28:
                 self.augments(({"SS": 0.3, "MI": 0.3, "CI": 0.3}), 1e6)
             else:
-                self.augments({"MI": 0.5, "DTMT": 0.5}, coords.INPUT_MAX)
+                self.augments({"CI": 0.5, "ML": 0.5}, coords.INPUT_MAX)
             if not self.check_pixel_color(*coords.COLOR_BM_LOCKED):
                 self.blood_magic(6)
             self.nuke()
@@ -44,7 +44,7 @@ class Equipment(Features):
 
         If you wish to edit the length or sequence of the rebirths; change the for-loop values
         and durations in the self.speedrun(duration) calls."""
-        self.set_wandoos(1)  # wandoos 98, use 1 for meh
+        self.set_wandoos(0)  # wandoos 98, use 1 for meh
 
         for x in range(3):
             self.speedrun(3)

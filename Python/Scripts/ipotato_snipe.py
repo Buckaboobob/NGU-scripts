@@ -12,11 +12,11 @@ import time
 
 def start_procedure(f, rt):
     """Procedure that handles start of rebirth."""
-#    f.merge_equipment()
-    f.boost_equipment()
-    f.merge_inventory(15)
-    f.boost_inventory(6)
-    f.boost_cube()
+#    f.merge_equipment()#
+#    f.boost_equipment()
+    f.merge_inventory(5)
+#    f.boost_inventory(8)
+#    f.boost_cube()
 #    print("Sleeping for 600 seconds")
 #    time.sleep(300)
 #    if f.check_pixel_color(*coords.IS_IDLE):
@@ -27,14 +27,15 @@ def start_procedure(f, rt):
     #print("Finished Waiting")
     f.reclaim_ngu(magic=True)
     f.reclaim_ngu()
-    feature.pit()
+    f.pit()
     f.loadout(3)
     f.deactivate_all_diggers()
     f.gold_diggers([9])
     f.YGG_harvest_activate()
     f.deactivate_all_diggers()
-    f.gold_diggers([1, 4, 5, 7, 8])
+    f.gold_diggers([1, 4, 5, 7, 8, 9])
     f.loadout(4)
+    f.level_diggers()
     idle_magic = f.get_idle_cap(2)
     idle_energy = f.get_idle_cap(1)
     while any([idle_magic, idle_energy]):
@@ -42,20 +43,30 @@ def start_procedure(f, rt):
         idle_energy = f.get_idle_cap(1)
         if idle_energy != 0:
             print("Reassign NGU Energy")
-            f.assign_ngu(idle_energy, [1, 2, 3, 4, 5, 6, 7])
+            #f.assign_ngu(idle_energy, [1, 2, 3, 4, 5, 6, 7])
+            f.assign_ngu(idle_energy, [5])
         idle_magic = f.get_idle_cap(2)
         if idle_magic != 0:
             print("Reassign NGU Magic")
-            f.assign_ngu(idle_magic, [2], magic=True)
+            f.assign_ngu(idle_magic, [1, 2], magic=True)
         #            f.blood_magic(7, reverse=True)
         idle_magic = f.get_idle_cap(2)
         idle_energy = f.get_idle_cap(1)
-    print("Sniping")
-    nav.menu("adventure")
-    f.kill_titan("BEAST1")
-    f.adventure(19, highest=False)
-    f.snipe(19, 10, once=False, bosses=True, manual=True)
-    print("Finished Snipe")
+    secs = 60
+    print(f"sniping for {secs} Seconds")
+    #    time.sleep(secs)
+    for _ in range(15):
+        f.itopod_snipe(secs)
+        if f.check_pixel_color(*coords.IS_IDLE):
+            print("Didn't toggle Idle")
+        else:
+            print("toggle off idle")
+            f.click(*coords.ABILITY_IDLE_MODE)
+        f.menu("inventory")
+        f.boost_equipment()
+#        f.boost_inventory(8)
+        f.boost_cube()
+    print("Done Sniping")
 
 w = Window()
 i = Inputs()

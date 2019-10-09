@@ -171,7 +171,7 @@ class Basic(Features, Inputs):
 
     def start(self):
         """Defeat target boss."""
-        self.set_wandoos(0)
+        self.set_wandoos(1)
         for x in range(6):
             self.speedrun(3)
             if not self.check_challenge():

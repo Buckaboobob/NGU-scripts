@@ -584,13 +584,14 @@ class Features(Navigation, Inputs):
                 scroll_down = True
             self.click(coords.AUG_MINUS_X, coords.AUGMENT[k].y)
 
-    def assign_ngu(self, value, targets, magic=False):
+    def assign_ngu(self, value, targets, magic=False, cap=False):
         """Assign energy/magic to NGU's.
 
         Keyword arguments:
         value -- the amount of energy/magic that will get split over all NGUs.
         targets -- Array of NGU's to use (1-9).
         magic -- Set to true if these are magic NGUs
+        cap -- True to use the cap button instead of plus
         """
         if len(targets) > 9:
             raise RuntimeError("Passing too many NGU's to assign_ngu," +
@@ -603,7 +604,10 @@ class Features(Navigation, Inputs):
         self.input_box()
         self.send_string(value // len(targets))
         for i in targets:
-            NGU = coords.Pixel(coords.NGU_PLUS.x, coords.NGU_PLUS.y + i * 35)
+            if cap:
+                NGU = coords.Pixel(coords.NGU_CAP.x, coords.NGU_CAP.y + i * 35)
+            else:
+                NGU = coords.Pixel(coords.NGU_PLUS.x, coords.NGU_PLUS.y + i * 35)
             self.click(*NGU)
 
     def gold_diggers(self, targets, deactivate=False):
@@ -1025,7 +1029,7 @@ class Features(Navigation, Inputs):
                     self.ctrl_click(*loc)
                 time.sleep(3)  # Need to wait for tooltip to disappear after consuming
 
-    def questing(self, duration=30, major=False, subcontract=False, force=0, adv_duration=2, butter=False):
+    def questing(self, duration=40, major=False, subcontract=False, force=0, adv_duration=2, butter=False):
         """Procedure for questing.
 
         Keyword arguments:
@@ -1101,7 +1105,7 @@ class Features(Navigation, Inputs):
         if force:
             if self.check_pixel_color(*coords.COLOR_QUESTING_USE_MAJOR):
                 self.click(*coords.QUESTING_USE_MAJOR)
-
+            print(coords.QUESTING_ZONES[force])
             while not coords.QUESTING_ZONES[force] in text.lower():
                 self.click(*coords.QUESTING_SKIP_QUEST)
                 self.click(*coords.CONFIRM)
@@ -1110,16 +1114,19 @@ class Features(Navigation, Inputs):
 
         if subcontract:
             if self.check_pixel_color(*coords.QUESTING_IDLE_INACTIVE):
-                self.click(*coords.QUESTING_SUBCONTRACT)
+#                self.click(*coords.QUESTING_SUBCONTRACT)
+                pass
             return
 
         if major and coords.QUESTING_MINOR_QUEST in text.lower():  # check if current quest is minor
             if self.check_pixel_color(*coords.QUESTING_IDLE_INACTIVE):
-                self.click(*coords.QUESTING_SUBCONTRACT)
+                # self.click(*coords.QUESTING_SUBCONTRACT)
+                pass
             return
 
         if not self.check_pixel_color(*coords.QUESTING_IDLE_INACTIVE):  # turn off idle
-            self.click(*coords.QUESTING_SUBCONTRACT)
+            # self.click(*coords.QUESTING_SUBCONTRACT)
+            pass
         if butter:
             self.click(*coords.QUESTING_BUTTER)
         for count, zone in enumerate(coords.QUESTING_ZONES, start=0):
@@ -1131,8 +1138,12 @@ class Features(Navigation, Inputs):
                         if adv_duration < 0.5:
                             adv_duration = 0
                             return
+                    print(f"Count: {count} Duration: {adv_duration}")
+
+#                    time.sleep(adv_duration*60)
                     self.snipe(count, adv_duration)
-                    self.boost_cube()
+#                    self.boost_equipment()
+#                    self.boost_cube()
                     self.questing_consume_items()
                     text = self.get_quest_text()
                     current_time = time.time()
